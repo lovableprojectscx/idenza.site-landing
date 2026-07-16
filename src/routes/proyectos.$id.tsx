@@ -4,14 +4,14 @@ import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "./index"; // reuse Reveal animation wrapper
 
-import projMiraflores from "@/assets/proj-miraflores.png";
-import projVelorioMockup from "@/assets/proj-velorio-mockup.png";
-import projBocafestMockup from "@/assets/proj-bocafest-mockup.png";
-import projSorpresas from "@/assets/proj-sorpresas.jpg";
-import projBocafest from "@/assets/proj-bocafest.jpg";
-import projFlor from "@/assets/proj-flor.jpg";
-import cajaSorpresa from "@/assets/caja-sorpresa.png";
-import projDionelle from "@/assets/proj-dionelle.jpg";
+import projMiraflores from "@/assets/proj-miraflores.webp";
+import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
+import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
+import projSorpresas from "@/assets/proj-sorpresas.webp";
+import projBocafest from "@/assets/proj-bocafest.webp";
+import projFlor from "@/assets/proj-flor.webp";
+import cajaSorpresa from "@/assets/caja-sorpresa.webp";
+import projDionelle from "@/assets/proj-dionelle.webp";
 
 export const Route = createFileRoute("/proyectos/$id")({
   head: ({ params }) => {
@@ -19,6 +19,9 @@ export const Route = createFileRoute("/proyectos/$id")({
     const title = caseItem.seoTitle || `${caseItem.name} · Caso de Estudio IDENZA`;
     const desc = caseItem.seoDesc || `Caso de estudio IDENZA: ${caseItem.name} (${caseItem.cat}).`;
     return {
+      links: [
+        { rel: "canonical", href: `https://idenza.site/proyectos/${params.id}` }
+      ],
       meta: [
         { title },
         { name: "description", content: desc },
@@ -169,6 +172,9 @@ function CaseStudyPage() {
                   <img
                     src={caseItem.img}
                     alt={`${caseItem.name} Mockup`}
+                    width={800}
+                    height={500}
+                    loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 </div>
@@ -176,6 +182,9 @@ function CaseStudyPage() {
                   <img
                     src={caseItem.secImg}
                     alt={`${caseItem.name} Detalle`}
+                    width={800}
+                    height={500}
+                    loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 </div>
@@ -185,6 +194,9 @@ function CaseStudyPage() {
                 <img
                   src={caseItem.img}
                   alt={caseItem.name}
+                  width={1200}
+                  height={675}
+                  loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>

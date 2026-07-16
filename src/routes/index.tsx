@@ -4,15 +4,19 @@ import { motion, useReducedMotion, useInView, animate } from "framer-motion";
 import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 import { Ban, TrendingDown, Search } from "lucide-react";
-import heroUmbrella from "@/assets/hero-umbrella.jpg";
-import projMiraflores from "@/assets/proj-miraflores.png";
-import projVelorioMockup from "@/assets/proj-velorio-mockup.png";
-import projBocafestMockup from "@/assets/proj-bocafest-mockup.png";
-import projSorpresas from "@/assets/proj-sorpresas.jpg";
-import jackPhoto from "@/assets/jack.jpg";
+import heroUmbrella from "@/assets/hero-umbrella.webp";
+import projMiraflores from "@/assets/proj-miraflores.webp";
+import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
+import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
+import projSorpresas from "@/assets/proj-sorpresas.webp";
+import jackPhoto from "@/assets/jack.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [
+      { rel: "preload", as: "image", href: heroUmbrella, fetchpriority: "high" },
+      { rel: "canonical", href: "https://idenza.site/" }
+    ],
     meta: [
       { title: "Diseño Web en Perú · Páginas y Catálogos WhatsApp | IDENZA" },
       {
@@ -816,6 +820,8 @@ function About() {
                   <img
                     src={jackPhoto}
                     alt="Jack Luján — Fundador de IDENZA"
+                    width={600}
+                    height={600}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     loading="lazy"
                   />

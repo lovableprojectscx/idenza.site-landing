@@ -1,26 +1,27 @@
 # IDENZA
 
-IDENZA es una consultoría de crecimiento digital en Perú liderada por su fundador Jack Luján. Diseña y desarrolla sistemas de venta, páginas web personalizadas y catálogos online interactivos con pedidos dirigidos a WhatsApp, basándose en la demanda real y comprobada de los usuarios antes de iniciar cualquier desarrollo de diseño.
+> Consultoría de crecimiento digital en Perú. Diseña y desarrolla sistemas de venta, páginas web y catálogos interactivos a WhatsApp basándose en demanda real comprobada.
 
-## Información Clave
-- **Propuesta de valor:** Demanda real antes que diseño. Verificación de búsquedas y volumen de mercado antes de programar o diseñar.
-- **Servicios:**
-  - Auditoría e investigación de demanda de mercado.
-  - Diseño y desarrollo web a medida (sin plantillas rígidas).
-  - Catálogos interactivos optimizados para celulares con pedidos directos a WhatsApp (ideal para florerías, tiendas de regalos, food boxes y detalles).
-  - IDENZA Tracker: Panel autogestionable que mide visitas, conversiones a WhatsApp y comportamiento de usuarios en tiempo real.
-- **Fundador:** Jack Luján (Ayacucho, Perú).
-- **Cobertura:** Atención 100% online en todo el Perú (con base en Ayacucho, Lima y Cusco).
-- **Contacto:** WhatsApp +51 921 585 977 / Correo: jack@idenza.site / Web: https://idenza.site
+## Información de Contacto y Canales
 
-## Casos de Estudio (Proyectos Destacados)
-1. **Miraflores Boutique Floral (Lima):** Tienda online premium para florería con catálogo interactivo y pasarela de pago directa.
-2. **Bocafest (Ayacucho):** Catálogo de food boxes con selección de adicionales y extras que el cliente arma de forma autónoma.
-3. **Florería para Velorio (Lima):** Catálogo optimizado para pedidos urgentes fúnebres realizables en 2 minutos sin llamadas.
-4. **Mundo de Sorpresas (Cusco):** Sistema web con agenda de entrega ordenada y bloqueo de fechas diario.
+- [Sitio Web Oficial](https://idenza.site) - Landing page principal y portal de acceso.
+- [Contacto por WhatsApp](https://wa.me/51921585977) - Chat directo de consultoría con el fundador.
+- [Formulario de Diagnóstico Gratis](https://idenza.site/diagnostico) - Solicita un análisis de demanda y volumen de búsquedas para tu negocio.
+- [Página del Fundador](https://idenza.site/fundador) - Trayectoria de Jack Luján e historia de IDENZA.
+- [Página de Contacto](https://idenza.site/contacto) - Formulario corporativo y correo de soporte.
 
-## Planes de Consultoría y Sistemas
-- **Presencia (S/ 850):** Web + WhatsApp, formulario de contacto y SEO base.
-- **Catálogo Mensual (S/ 500 inicial + S/ 149/mes):** Catálogo con extras, pedidos directos a WhatsApp, Tracker y hosting.
-- **Catálogo Único (S/ 1,650):** Catálogo completo sin mensualidad alojado en tu propio hosting.
-- **Tienda Completa (S/ 2,900):** Pasarela de pagos online integrada, control de inventario y panel de métricas avanzado.
+## Soluciones y Nichos
+
+- [Diseño Web para Florerías](https://idenza.site/florerias) - Landing page dedicada a floristerías y florerías en Perú. Catálogos sin comisiones que mandan pedidos ordenados a WhatsApp.
+
+## Casos de Estudio y Proyectos
+
+- [Portafolio de Proyectos](https://idenza.site/proyectos) - Listado de sistemas interactivos entregados para negocios peruanos.
+- [Caso Miraflores Boutique Floral](https://idenza.site/proyectos/miraflores) - Catálogo premium con pasarela de pago para florería en Lima.
+- [Caso Bocafest](https://idenza.site/proyectos/bocafest) - Sistema de armado de pedidos y adicionales para food boxes en Ayacucho.
+- [Caso Florería para Velorio](https://idenza.site/proyectos/velorio) - Sistema web optimizado para pedidos urgentes fúnebres sin llamadas.
+- [Caso Mundo de Sorpresas](https://idenza.site/proyectos/sorpresas) - Catálogo web interactivo con calendario de entregas para Cusco.
+
+## Planes y Tarifas
+
+- [Planes de Diseño y Sistemas](https://idenza.site/#planes) - Lista de planes: Plan Presencia (S/850), Plan Catálogo Mensual (S/500 + S/149/mes), Plan Catálogo Único (S/1,650), y Plan Tienda Completa (S/2,900).

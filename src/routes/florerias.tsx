@@ -3,16 +3,20 @@ import { useState, useEffect, type ReactNode } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { Logo } from "@/components/Logo";
 import { Phone, Video, MoreVertical, Smile, Paperclip, Send, CheckCheck, MapPin, Calendar, Heart } from "lucide-react";
-import heroCatalog from "@/assets/hero-catalog.jpg";
-import cajaSorpresa from "@/assets/caja-sorpresa.png";
-import projMiraflores from "@/assets/proj-miraflores.png";
-import projVelorioMockup from "@/assets/proj-velorio-mockup.png";
-import projBocafestMockup from "@/assets/proj-bocafest-mockup.png";
-import projSorpresas from "@/assets/proj-sorpresas.jpg";
-import jackPhoto from "@/assets/jack.jpg";
+import heroCatalog from "@/assets/hero-catalog.webp";
+import cajaSorpresa from "@/assets/caja-sorpresa.webp";
+import projMiraflores from "@/assets/proj-miraflores.webp";
+import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
+import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
+import projSorpresas from "@/assets/proj-sorpresas.webp";
+import jackPhoto from "@/assets/jack.webp";
 
 export const Route = createFileRoute("/florerias")({
   head: () => ({
+    links: [
+      { rel: "preload", as: "image", href: heroCatalog, fetchpriority: "high" },
+      { rel: "canonical", href: "https://idenza.site/florerias" }
+    ],
     meta: [
       { title: "Página Web y Catálogo WhatsApp para Florerías | IDENZA" },
       { name: "description", content: "Catálogo web para tu florería: tus seguidores arman su pedido y te llega a WhatsApp ya cotizado. Diseño web para florerías en Perú, sin comisiones." },
@@ -658,8 +662,8 @@ function ProjectRow({ project, reverse }: { project: { name: string; cat: string
             src={project.img}
             alt={`${project.name} — ${project.cat}`}
             loading="lazy"
-            width={1600}
-            height={1100}
+            width={800}
+            height={640}
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-[color:var(--ink)]/0 group-hover:bg-[color:var(--ink)]/10 transition-colors" />
@@ -838,6 +842,8 @@ function About() {
             <img
               src={jackPhoto}
               alt="Jack Luján"
+              width={300}
+              height={300}
               className="w-full h-full object-cover"
               loading="lazy"
             />

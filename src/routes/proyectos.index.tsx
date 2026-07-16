@@ -4,13 +4,16 @@ import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "./index"; // reuse Reveal animation wrapper
 
-import projMiraflores from "@/assets/proj-miraflores.png";
-import projVelorioMockup from "@/assets/proj-velorio-mockup.png";
-import projBocafestMockup from "@/assets/proj-bocafest-mockup.png";
-import projSorpresas from "@/assets/proj-sorpresas.jpg";
+import projMiraflores from "@/assets/proj-miraflores.webp";
+import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
+import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
+import projSorpresas from "@/assets/proj-sorpresas.webp";
 
 export const Route = createFileRoute("/proyectos/")({
   head: () => ({
+    links: [
+      { rel: "canonical", href: "https://idenza.site/proyectos" }
+    ],
     meta: [
       { title: "Proyectos y Casos de Diseño Web | IDENZA Perú" },
       { name: "description", content: "Casos reales de páginas web y catálogos que venden: florerías, food box y más. Mira los sistemas que IDENZA construyó para negocios en Perú." },

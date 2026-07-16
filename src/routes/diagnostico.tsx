@@ -8,6 +8,9 @@ import { sendDiagnosticEmail } from "@/lib/mail";
 
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({
+    links: [
+      { rel: "canonical", href: "https://idenza.site/diagnostico" }
+    ],
     meta: [
       { title: "Diagnóstico Web Gratis para tu Negocio | IDENZA" },
       { name: "description", content: "Solicita tu diagnóstico web gratis: te mostramos si tus clientes te buscan y dónde pierdes ventas. Sin compromiso. IDENZA, diseño web en Perú." },

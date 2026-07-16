@@ -8,6 +8,9 @@ import { sendContactEmail } from "@/lib/mail";
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
+    links: [
+      { rel: "canonical", href: "https://idenza.site/contacto" }
+    ],
     meta: [
       { title: "Contacto · Diseño Web en Perú | IDENZA" },
       { name: "description", content: "Hablemos por WhatsApp o correo. Diseño web, catálogos y sistemas de pedidos para negocios en Perú. Te respondemos directo, sin bots." },

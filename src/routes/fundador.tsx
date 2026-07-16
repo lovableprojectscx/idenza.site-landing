@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "./index"; // reuse Reveal animation wrapper
-import jackPhoto from "@/assets/jack.jpg";
+import jackPhoto from "@/assets/jack.webp";
 import { Facebook, Instagram } from "lucide-react";
 
 export const Route = createFileRoute("/fundador")({
   head: () => ({
+    links: [
+      { rel: "canonical", href: "https://idenza.site/fundador" }
+    ],
     meta: [
       { title: "Jack Luján, Fundador de IDENZA · Diseño Web Perú" },
       { name: "description", content: "Conoce a Jack Luján, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
@@ -162,6 +165,8 @@ function FounderPage() {
                     <img
                       src={jackPhoto}
                       alt="Jack Luján — Fundador de IDENZA"
+                      width={600}
+                      height={600}
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       loading="lazy"
                     />
