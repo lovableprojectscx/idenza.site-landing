@@ -14,7 +14,6 @@ import jackPhoto from "@/assets/jack.webp";
 export const Route = createFileRoute("/florerias")({
   head: () => ({
     links: [
-      { rel: "preload", as: "image", href: "/og-florerias.jpg", fetchpriority: "high" },
       { rel: "canonical", href: "https://idenza.site/florerias" }
     ],
     meta: [
@@ -228,13 +227,12 @@ function Nav() {
 /* ---------- HERO ---------- */
 function Hero() {
   return (
-    <section id="top" className="relative h-[92vh] min-h-[640px] w-full overflow-hidden text-[color:var(--bone)]">
+    <section id="top" className="relative h-[92vh] min-h-[640px] w-full overflow-hidden text-[color:var(--bone)] bg-[#0A0F1D]">
       <video
         autoPlay
         loop
         muted
         playsInline
-        poster="/og-florerias.jpg"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src="/florerias.mp4" type="video/mp4" />
