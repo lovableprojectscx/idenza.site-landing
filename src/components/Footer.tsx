@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-16 grid md:grid-cols-3 gap-10 text-sm">
         <div>
           <Logo light />
-          <p className="mt-6 max-w-xs text-[color:var(--bone)]/55 leading-relaxed">
+          <p className="mt-6 max-w-xs text-[color:var(--bone)] leading-relaxed">
             Consultoría de crecimiento digital sobre demanda comprobada.
           </p>
         </div>
@@ -84,7 +84,7 @@ export function Footer() {
           </Link>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-xs text-[color:var(--bone)]/40">
+      <div className="border-t border-white/10 py-6 text-center text-xs text-[color:var(--bone)]">
         © 2026 IDENZA · Ayacucho, Perú
       </div>
     </footer>
