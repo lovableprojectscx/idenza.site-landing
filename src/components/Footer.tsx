@@ -71,6 +71,12 @@ export function Footer() {
             El fundador
           </Link>
           <Link
+            to="/blog"
+            className="text-[color:var(--bone)]/75 hover:text-white transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
             to="/contacto"
             className="text-[color:var(--bone)]/75 hover:text-white transition-colors"
           >

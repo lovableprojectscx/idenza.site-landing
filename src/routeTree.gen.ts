@@ -14,9 +14,12 @@ import { Route as FundadorRouteImport } from './routes/fundador'
 import { Route as FloreriasRouteImport } from './routes/florerias'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProyectosIndexRouteImport } from './routes/proyectos.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ProyectosIdRouteImport } from './routes/proyectos.$id'
+import { Route as BlogPorQueMiPaginaWebNoVendeRouteImport } from './routes/blog.por-que-mi-pagina-web-no-vende'
 
 const ProyectosRoute = ProyectosRouteImport.update({
   id: '/proyectos',
@@ -43,6 +46,11 @@ const ContactoRoute = ContactoRouteImport.update({
   path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -53,20 +61,34 @@ const ProyectosIndexRoute = ProyectosIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ProyectosRoute,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
 const ProyectosIdRoute = ProyectosIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => ProyectosRoute,
 } as any)
+const BlogPorQueMiPaginaWebNoVendeRoute =
+  BlogPorQueMiPaginaWebNoVendeRouteImport.update({
+    id: '/por-que-mi-pagina-web-no-vende',
+    path: '/por-que-mi-pagina-web-no-vende',
+    getParentRoute: () => BlogRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contacto': typeof ContactoRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
   '/proyectos': typeof ProyectosRouteWithChildren
+  '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
+  '/blog/': typeof BlogIndexRoute
   '/proyectos/': typeof ProyectosIndexRoute
 }
 export interface FileRoutesByTo {
@@ -75,30 +97,38 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof DiagnosticoRoute
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
+  '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
+  '/blog': typeof BlogIndexRoute
   '/proyectos': typeof ProyectosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contacto': typeof ContactoRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
   '/proyectos': typeof ProyectosRouteWithChildren
+  '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
+  '/blog/': typeof BlogIndexRoute
   '/proyectos/': typeof ProyectosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blog'
     | '/contacto'
     | '/diagnostico'
     | '/florerias'
     | '/fundador'
     | '/proyectos'
+    | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
+    | '/blog/'
     | '/proyectos/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -107,22 +137,28 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/florerias'
     | '/fundador'
+    | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
+    | '/blog'
     | '/proyectos'
   id:
     | '__root__'
     | '/'
+    | '/blog'
     | '/contacto'
     | '/diagnostico'
     | '/florerias'
     | '/fundador'
     | '/proyectos'
+    | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
+    | '/blog/'
     | '/proyectos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRouteWithChildren
   ContactoRoute: typeof ContactoRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
   FloreriasRoute: typeof FloreriasRoute
@@ -167,6 +203,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -181,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProyectosIndexRouteImport
       parentRoute: typeof ProyectosRoute
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/proyectos/$id': {
       id: '/proyectos/$id'
       path: '/$id'
@@ -188,8 +238,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProyectosIdRouteImport
       parentRoute: typeof ProyectosRoute
     }
+    '/blog/por-que-mi-pagina-web-no-vende': {
+      id: '/blog/por-que-mi-pagina-web-no-vende'
+      path: '/por-que-mi-pagina-web-no-vende'
+      fullPath: '/blog/por-que-mi-pagina-web-no-vende'
+      preLoaderRoute: typeof BlogPorQueMiPaginaWebNoVendeRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogPorQueMiPaginaWebNoVendeRoute: typeof BlogPorQueMiPaginaWebNoVendeRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogPorQueMiPaginaWebNoVendeRoute: BlogPorQueMiPaginaWebNoVendeRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface ProyectosRouteChildren {
   ProyectosIdRoute: typeof ProyectosIdRoute
@@ -207,6 +276,7 @@ const ProyectosRouteWithChildren = ProyectosRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRoute: BlogRouteWithChildren,
   ContactoRoute: ContactoRoute,
   DiagnosticoRoute: DiagnosticoRoute,
   FloreriasRoute: FloreriasRoute,
