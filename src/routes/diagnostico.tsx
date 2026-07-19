@@ -215,6 +215,7 @@ function Nav() {
     { href: "/#proyectos", label: "Proyectos" },
     { href: "/#planes", label: "Planes" },
     { href: "/fundador", label: "El fundador" },
+    { href: "/blog", label: "Blog" },
   ];
   return (
     <header
