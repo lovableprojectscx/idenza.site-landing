@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/r/:slug*",
+      "destination": "https://hub.idenza.site/r/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/tracker.js",
+      "destination": "https://hub.idenza.site/tracker.js",
+      "permanent": true
+    }
+  ]
+}
