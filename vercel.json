@@ -1,9 +1,14 @@
 {
   "redirects": [
     {
+      "source": "/r/grupogerenci-t742",
+      "destination": "https://inspira-certificate-hub.lovable.app/",
+      "permanent": false
+    },
+    {
       "source": "/r/:slug*",
-      "destination": "https://hub.idenza.site/r/:slug*",
-      "permanent": true
+      "destination": "https://inspira-certificate-hub.lovable.app/",
+      "permanent": false
     },
     {
       "source": "/tracker.js",
