@@ -8,6 +8,7 @@ import projMiraflores from "@/assets/proj-miraflores.webp";
 import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
 import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
 import projSorpresas from "@/assets/proj-sorpresas.webp";
+import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
 
 export const Route = createFileRoute("/proyectos/")({
   head: () => ({
@@ -40,6 +41,13 @@ const WHATSAPP = "https://wa.me/51921585977?text=Hola,%20solicito%20diagnostico%
 function ProjectsPage() {
   const items = [
     {
+      id: "vadillo",
+      name: "Vadillo Broker",
+      cat: "Seguros & Inmobiliaria · Lima / Perú",
+      desc: "Plataforma web de alta confianza. PageSpeed 99/100 y SEO 100/100.",
+      img: projVadilloMockup,
+    },
+    {
       id: "miraflores",
       name: "Miraflores Boutique Floral",
       cat: "Florería · Lima",
@@ -62,9 +70,9 @@ function ProjectsPage() {
     },
     {
       id: "sorpresas",
-      name: "Mundo de Sorpresas",
-      cat: "Detalles · Cusco",
-      desc: "Agenda ordenada y contactos medidos.",
+      name: "Sorpresas Ayacucho",
+      cat: "Detalles · Ayacucho",
+      desc: "Catálogo web interactivo con pedidos directos a WhatsApp.",
       img: projSorpresas,
     },
   ];

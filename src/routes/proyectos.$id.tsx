@@ -12,6 +12,7 @@ import projBocafest from "@/assets/proj-bocafest.webp";
 import projFlor from "@/assets/proj-flor.webp";
 import cajaSorpresa from "@/assets/caja-sorpresa.webp";
 import projDionelle from "@/assets/proj-dionelle.webp";
+import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
 
 import { ExternalLink } from "lucide-react";
 
@@ -119,6 +120,19 @@ const CASE_DATA: Record<string, {
     services: ["Diseño de catálogo", "Integración WhatsApp", "Optimización móvil"],
     seoTitle: "Sorpresas Ayacucho · Catálogo Web de Regalos | IDENZA",
     seoDesc: "Caso real: catálogo web de regalos y detalles personalizados en Ayacucho. Desarrollo por IDENZA."
+  },
+  vadillo: {
+    name: "Vadillo Broker",
+    cat: "Seguros & Inmobiliaria · Lima / Perú",
+    challenge: "El cliente necesitaba transmitir máxima solvencia, confianza y atención senior personalizada, diferenciándose de las aseguradoras tradicionales con call centers fríos.",
+    built: "Una plataforma web corporativa ultrarrápida con arquitectura limpia en React/Vite, diseño enfocado en autoridad (Corredor SBS N° 4582), métricas de impacto en vivo y canal directo de asesoría senior a WhatsApp.",
+    result: "Score perfecto en Google PageSpeed: 99/100 en Rendimiento y 100/100 en SEO. Atención directa sin intermediarios y posicionamiento de marca senior.",
+    img: projVadilloMockup,
+    siteUrl: "https://www.vadillobroker.com/",
+    tech: ["React", "Vite", "Tailwind CSS", "SEO 100", "PageSpeed 99", "WhatsApp API"],
+    services: ["Branding Corporativo", "Diseño UX/UI", "Desarrollo Frontend", "SEO & Velocidad 99/100"],
+    seoTitle: "Vadillo Broker · Caso de Estudio de Desarrollo Web | IDENZA",
+    seoDesc: "Caso real: cómo Vadillo Broker (Seguros e Inmobiliaria) logró 99/100 en PageSpeed y 100/100 en SEO con IDENZA."
   }
 };
 

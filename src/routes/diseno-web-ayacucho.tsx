@@ -23,6 +23,7 @@ import heroClientAyacucho from "@/assets/hero-client-ayacucho.webp";
 import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
 import projMiraflores from "@/assets/proj-miraflores.webp";
 import projSorpresas from "@/assets/proj-sorpresas.webp";
+import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
 
 export const Route = createFileRoute("/diseno-web-ayacucho")({
   head: () => ({
@@ -724,45 +725,65 @@ function LocalProofSection() {
         </Reveal>
 
         {/* Secondary Project Previews Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-10">
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
           <Reveal delay={0.05}>
-            <div className="p-6 rounded-2xl bg-card border border-border/60 flex items-center gap-5">
+            <Link to="/proyectos/vadillo" className="p-5 rounded-2xl bg-card border border-border/60 flex items-center gap-4 hover:border-amber/40 transition-colors group">
               <img
-                src={projMiraflores}
-                alt="Proyecto Florería Ayacucho"
+                src={projVadilloMockup}
+                alt="Proyecto Vadillo Broker"
                 width={120}
                 height={120}
-                className="w-20 h-20 rounded-xl object-cover shrink-0 border border-border"
+                className="w-20 h-20 rounded-xl object-cover shrink-0 border border-border group-hover:scale-105 transition-transform"
                 loading="lazy"
               />
               <div className="space-y-1">
-                <div className="text-xs eyebrow text-muted-foreground">Florerías & Regalos</div>
-                <div className="text-base font-display font-semibold text-foreground">Catálogo de detalles</div>
+                <div className="text-[10px] eyebrow text-amber font-semibold">Seguros & Inmobiliaria</div>
+                <div className="text-sm font-display font-semibold text-foreground">Vadillo Broker</div>
                 <p className="text-xs text-muted-foreground">
-                  Pedidos programados con fecha, dedicatoria y ubicación exacta en WhatsApp.
+                  PageSpeed 99/100 y SEO 100/100.
                 </p>
               </div>
-            </div>
+            </Link>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="p-6 rounded-2xl bg-card border border-border/60 flex items-center gap-5">
+            <Link to="/proyectos/miraflores" className="p-5 rounded-2xl bg-card border border-border/60 flex items-center gap-4 hover:border-amber/40 transition-colors group">
+              <img
+                src={projMiraflores}
+                alt="Proyecto Florería Miraflores"
+                width={120}
+                height={120}
+                className="w-20 h-20 rounded-xl object-cover shrink-0 border border-border group-hover:scale-105 transition-transform"
+                loading="lazy"
+              />
+              <div className="space-y-1">
+                <div className="text-[10px] eyebrow text-muted-foreground">Florerías & Regalos</div>
+                <div className="text-sm font-display font-semibold text-foreground">Miraflores Floral</div>
+                <p className="text-xs text-muted-foreground">
+                  Catálogo con pedidos a WhatsApp.
+                </p>
+              </div>
+            </Link>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <Link to="/proyectos/sorpresas" className="p-5 rounded-2xl bg-card border border-border/60 flex items-center gap-4 hover:border-amber/40 transition-colors group">
               <img
                 src={projSorpresas}
                 alt="Proyecto Regalos Ayacucho"
                 width={120}
                 height={120}
-                className="w-20 h-20 rounded-xl object-cover shrink-0 border border-border"
+                className="w-20 h-20 rounded-xl object-cover shrink-0 border border-border group-hover:scale-105 transition-transform"
                 loading="lazy"
               />
               <div className="space-y-1">
-                <div className="text-xs eyebrow text-muted-foreground">Servicios & Marcas</div>
-                <div className="text-base font-display font-semibold text-foreground">Landing de alta conversión</div>
+                <div className="text-[10px] eyebrow text-muted-foreground">Detalles & Regalos</div>
+                <div className="text-sm font-display font-semibold text-foreground">Sorpresas Ayacucho</div>
                 <p className="text-xs text-muted-foreground">
-                  Estructura ligera pensada para cargar en menos de 1 segundo en celulares 4G.
+                  Pedidos rápidos desde redes.
                 </p>
               </div>
-            </div>
+            </Link>
           </Reveal>
         </div>
 
