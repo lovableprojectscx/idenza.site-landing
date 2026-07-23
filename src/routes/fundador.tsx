@@ -12,20 +12,20 @@ export const Route = createFileRoute("/fundador")({
       { rel: "canonical", href: "https://idenza.site/fundador" }
     ],
     meta: [
-      { title: "Jack Luján, Fundador de IDENZA · Diseño Web Perú" },
-      { name: "description", content: "Conoce a Jack Luján, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
+      { title: "Jack Lujan, Fundador de IDENZA · Diseño Web Perú" },
+      { name: "description", content: "Conoce a Jack Lujan, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
       { property: "og:url", content: "https://idenza.site/fundador" },
-      { property: "og:title", content: "Jack Luján, Fundador de IDENZA · Diseño Web Perú" },
-      { property: "og:description", content: "Conoce a Jack Luján, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
+      { property: "og:title", content: "Jack Lujan, Fundador de IDENZA · Diseño Web Perú" },
+      { property: "og:description", content: "Conoce a Jack Lujan, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
       { property: "og:image", content: "https://idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Jack Luján, Fundador de IDENZA · Diseño Web Perú" },
-      { name: "twitter:description", content: "Conoce a Jack Luján, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
+      { name: "twitter:title", content: "Jack Lujan, Fundador de IDENZA · Diseño Web Perú" },
+      { name: "twitter:description", content: "Conoce a Jack Lujan, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
       { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
       {
         script: [
@@ -36,18 +36,18 @@ export const Route = createFileRoute("/fundador")({
               "@type": "AboutPage",
               "mainEntity": {
                 "@type": "Person",
-                "name": "Jack Franklyn Quispe Luján",
+                "name": "Jack Franklyn Quispe Lujan",
                 "jobTitle": "Fundador y Consultor de Crecimiento Digital",
                 "worksFor": {
                   "@type": "Organization",
                   "name": "IDENZA",
                   "url": "https://idenza.site"
                 },
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Ayacucho",
-                  "addressCountry": "PE"
-                }
+                "sameAs": [
+                  "https://www.facebook.com/jack.quispe.313",
+                  "https://www.instagram.com/jacklujanm/",
+                  "https://www.tiktok.com/@jackfql"
+                ]
               }
             }),
           },
@@ -87,7 +87,7 @@ function FounderPage() {
               <Reveal>
                 <p className="eyebrow mb-6">El fundador</p>
                 <h1 className="text-4xl md:text-5xl font-display font-medium text-foreground tracking-tight mb-8">
-                  Jack Luján, fundador de IDENZA.
+                  Jack Lujan, fundador de IDENZA.
                 </h1>
                 
                 <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -164,7 +164,7 @@ function FounderPage() {
                   <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-foreground/10 bg-card shadow-2xl transition-transform duration-500 hover:-translate-x-1 hover:-translate-y-1">
                     <img
                       src={jackPhoto}
-                      alt="Jack Luján — Fundador de IDENZA"
+                      alt="Jack Lujan — Fundador de IDENZA"
                       width={600}
                       height={600}
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

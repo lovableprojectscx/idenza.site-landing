@@ -118,7 +118,7 @@ export const Route = createFileRoute("/diseno-web-ayacucho")({
                   ],
                   "founder": {
                     "@type": "Person",
-                    "name": "Jack Luján"
+                    "name": "Jack Lujan"
                   },
                   "sameAs": [
                     "https://www.facebook.com/idenza.site",

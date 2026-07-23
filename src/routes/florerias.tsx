@@ -840,7 +840,7 @@ function About() {
           <div className="aspect-square rounded-full overflow-hidden border border-border bg-card mx-auto md:mx-0 w-64 md:w-full shadow-lg">
             <img
               src={jackPhoto}
-              alt="Jack Luján"
+              alt="Jack Lujan"
               width={300}
               height={300}
               className="w-full h-full object-cover"

@@ -27,7 +27,7 @@ export const Route = createFileRoute("/blog/por-que-mi-pagina-web-no-vende")({
       { name: "twitter:description", content: "Tienes una página web pero no genera ventas. Estas son las 5 razones más comunes por las que tu web no vende, y cómo convertirla en un sistema que sí trae clientes." },
       { name: "twitter:image", content: "https://idenza.site/blog/web-not-selling-feature.jpg" },
       { name: "article:published_time", content: "2026-07-19T12:00:00-05:00" },
-      { name: "article:author", content: "Jack Luján" },
+      { name: "article:author", content: "Jack Lujan" },
       { name: "article:section", content: "Estrategia Digital" },
       {
         script: [
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/blog/por-que-mi-pagina-web-no-vende")({
               "image": "https://idenza.site/blog/web-not-selling-feature.jpg",
               "author": {
                 "@type": "Person",
-                "name": "Jack Luján",
+                "name": "Jack Lujan",
                 "url": "https://idenza.site/fundador"
               },
               "publisher": {
@@ -104,7 +104,7 @@ function BlogPostPage() {
               </span>
               <span className="flex items-center gap-1">
                 <User className="w-3.5 h-3.5" />
-                Por Jack Luján
+                Por Jack Lujan
               </span>
             </div>
 

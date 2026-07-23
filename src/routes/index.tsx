@@ -70,7 +70,7 @@ export const Route = createFileRoute("/")({
               },
               "founder": {
                 "@type": "Person",
-                "name": "Jack Luján",
+                "name": "Jack Lujan",
                 "jobTitle": "Fundador"
               },
               "sameAs": [
@@ -794,7 +794,7 @@ function About() {
             <Reveal>
               <p className="eyebrow mb-6">El fundador</p>
               <h2 className="text-4xl md:text-5xl font-display font-medium text-foreground tracking-tight max-w-xl mb-8">
-                Jack Luján, fundador de IDENZA.
+                Jack Lujan, fundador de IDENZA.
               </h2>
               <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
@@ -818,7 +818,7 @@ function About() {
                 <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-foreground/10 bg-card shadow-2xl transition-transform duration-500 hover:-translate-x-1 hover:-translate-y-1">
                   <img
                     src={jackPhoto}
-                    alt="Jack Luján — Fundador de IDENZA"
+                    alt="Jack Lujan — Fundador de IDENZA"
                     width={600}
                     height={600}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
