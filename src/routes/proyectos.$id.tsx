@@ -13,6 +13,8 @@ import projFlor from "@/assets/proj-flor.webp";
 import cajaSorpresa from "@/assets/caja-sorpresa.webp";
 import projDionelle from "@/assets/proj-dionelle.webp";
 
+import { ExternalLink } from "lucide-react";
+
 export const Route = createFileRoute("/proyectos/$id")({
   head: ({ params }) => {
     const caseItem = CASE_DATA[params.id] || CASE_DATA.miraflores;
@@ -86,7 +88,7 @@ const CASE_DATA: Record<string, {
     siteUrl: "https://www.bocafestfoodbox.com/",
     tech: ["React", "Vite", "Tailwind CSS", "Admin Dashboard", "WhatsApp API"],
     services: ["Investigación de mercado", "Diseño de Catálogo", "Panel de administración", "Tracker con IA"],
-    video: "https://www.facebook.com/share/v/195pbuEHhk/",
+    video: "https://vt.tiktok.com/ZSXn1HPp5/",
     seoTitle: "Bocafest · Catálogo Web con Pedidos a WhatsApp | IDENZA",
     seoDesc: "Caso real: cómo Bocafest, food box en Ayacucho, vende más con su catálogo interactivo con extras. Diseño y desarrollo web por IDENZA."
   },
@@ -98,109 +100,87 @@ const CASE_DATA: Record<string, {
     result: "Pedidos urgentes resueltos de forma autónoma en 2 minutos y 100% online, sin necesidad de llamadas.",
     img: projVelorioMockup,
     secImg: projFlor,
-    siteUrl: "https://www.floreriaparavelorio.com/",
-    tech: ["Vite", "React", "Tailwind CSS", "Fast Checkout", "WhatsApp API"],
-    services: ["Análisis de keywords de urgencia", "Optimización UX/UI", "Checkout de 2 minutos", "Tracker de conversiones"],
-    seoTitle: "Florería para Velorio · Web de Pedidos Urgentes | IDENZA",
-    seoDesc: "Caso real: cómo Florería para Velorio, servicio funerario en Lima, vende más con su catálogo web de pedidos urgentes. Diseño y desarrollo web por IDENZA."
+    siteUrl: "https://floreriasparavelorio.com/",
+    tech: ["React", "Vite", "Tailwind CSS", "SEO Local", "WhatsApp API"],
+    services: ["Diseño UX/UI", "Desarrollo Frontend", "SEO para conversión rápida"],
+    seoTitle: "Florería para Velorio · Catálogo Web Urgente | IDENZA",
+    seoDesc: "Caso real: catálogo de pedidos rápidos de arreglos funerarios en Lima. Diseño web por IDENZA."
   },
   sorpresas: {
-    name: "Mundo de Sorpresas",
-    cat: "Detalles · Cusco",
-    challenge: "Desorganización en la agenda de pedidos diarios y falta de medición sobre cuántos contactos de redes sociales realmente se convertían en ventas.",
-    built: "Un sistema web con agenda ordenada de pedidos, selección de fechas de entrega bloqueadas y medición de conversiones integrada.",
-    result: "Agenda de entrega ordenada automáticamente y tasa de conversión de contactos a WhatsApp medida en tiempo real.",
+    name: "Sorpresas Ayacucho",
+    cat: "Detalles & Regalos · Ayacucho",
+    challenge: "Negocio local de desayunos y cajas sorpresa que perdía pedidos por no tener un catálogo claro con precios y adicionales.",
+    built: "Un catálogo interactivo ligero optimizado para redes sociales con pedidos estructurados a WhatsApp.",
+    result: "Incremento significativo en cierres directos desde Instagram y TikTok sin perder tiempo cotizando manualmente.",
     img: projSorpresas,
     secImg: cajaSorpresa,
-    siteUrl: "https://sorpresas.idenza.site",
-    tech: ["React", "Vite", "Tailwind CSS", "Calendar Booking", "WhatsApp API"],
-    services: ["Organización de agenda", "Bloqueo de fechas automático", "Catálogo interactivo", "Tracker con IA"],
-    seoTitle: "Mundo de Sorpresas · Catálogo Online de Detalles | IDENZA",
-    seoDesc: "Caso real: cómo Mundo de Sorpresas, detalles en Cusco, vende más con su catálogo virtual con agenda ordenada. Diseño y desarrollo web por IDENZA."
+    siteUrl: "https://sorpresas-ayacucho.vercel.app/",
+    tech: ["React", "Vite", "Tailwind CSS", "WhatsApp API"],
+    services: ["Diseño de catálogo", "Integración WhatsApp", "Optimización móvil"],
+    seoTitle: "Sorpresas Ayacucho · Catálogo Web de Regalos | IDENZA",
+    seoDesc: "Caso real: catálogo web de regalos y detalles personalizados en Ayacucho. Desarrollo por IDENZA."
   }
 };
 
 function CaseStudyPage() {
   const { id } = useParams({ from: "/proyectos/$id" });
-  const caseItem = CASE_DATA[id] || CASE_DATA.miraflores; // fallback
+  const caseItem = CASE_DATA[id] || CASE_DATA.miraflores;
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-background text-foreground selection:bg-amber selection:text-ink">
       <Nav />
 
-      <main className="pt-32 pb-24">
+      <main className="pt-28 pb-20">
         <section className="mx-auto max-w-5xl px-6 md:px-10">
           {/* Header */}
-          <Reveal className="mb-8">
-            <p className="eyebrow mb-4">{caseItem.cat}</p>
-            <h1 className="text-4xl md:text-6xl font-display font-medium text-foreground tracking-tight max-w-3xl">
+          <Reveal>
+            <div className="mb-6">
+              <Link to="/proyectos" className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
+                ← Volver a todos los proyectos
+              </Link>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary border border-border text-foreground/80 text-xs font-medium mb-4">
+              <span>{caseItem.cat}</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-foreground tracking-tight mb-6">
               {caseItem.name}
             </h1>
           </Reveal>
 
-          {/* Project Meta details bar */}
-          <Reveal delay={0.02} className="mb-12">
-            <div className="flex flex-wrap gap-x-12 gap-y-6 text-sm border-t border-b border-border/40 py-6">
-              <div>
-                <span className="block text-muted-foreground uppercase text-[10px] eyebrow mb-1">Servicios</span>
-                <span className="font-semibold text-foreground">{caseItem.services.join(" · ")}</span>
-              </div>
-              <div>
-                <span className="block text-muted-foreground uppercase text-[10px] eyebrow mb-1">Tecnologías</span>
-                <span className="font-semibold text-foreground">{caseItem.tech.join(" · ")}</span>
+          {/* Quick Stats / Tech pill bar */}
+          <Reveal delay={0.05}>
+            <div className="flex flex-wrap items-center justify-between gap-4 p-6 rounded-2xl bg-card border border-border shadow-sm mb-12">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs text-muted-foreground font-medium mr-2">Tecnología:</span>
+                {caseItem.tech.map((t) => (
+                  <span key={t} className="px-2.5 py-1 rounded-md bg-secondary text-xs text-foreground/90 font-mono">
+                    {t}
+                  </span>
+                ))}
               </div>
               {caseItem.siteUrl && (
-                <div className="md:ml-auto">
-                  <a 
-                    href={caseItem.siteUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="btn-amber !py-2.5 !px-5 text-xs rounded-xl font-medium inline-flex items-center gap-1.5"
-                  >
-                    Visitar sitio web ↗
-                  </a>
-                </div>
+                <a
+                  href={caseItem.siteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-amber text-xs py-2 px-4 rounded-xl inline-flex items-center gap-1.5"
+                >
+                  <span>Visitar sitio en vivo</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               )}
             </div>
           </Reveal>
 
-          {/* Featured Image Grid / Gallery */}
-          <Reveal delay={0.05} className="mb-16">
-            {caseItem.secImg ? (
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="aspect-[16/10] w-full overflow-hidden rounded-3xl border border-border/40 shadow-2xl bg-muted relative">
-                  <img
-                    src={caseItem.img}
-                    alt={`${caseItem.name} Mockup`}
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-                <div className="aspect-[16/10] w-full overflow-hidden rounded-3xl border border-border/40 shadow-2xl bg-muted relative">
-                  <img
-                    src={caseItem.secImg}
-                    alt={`${caseItem.name} Detalle`}
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border/40 shadow-2xl bg-muted relative">
-                <img
-                  src={caseItem.img}
-                  alt={caseItem.name}
-                  width={1200}
-                  height={675}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-            )}
+          {/* Main Hero Image */}
+          <Reveal delay={0.1} className="mb-16">
+            <div className="relative rounded-3xl overflow-hidden border border-border shadow-2xl aspect-[16/9] w-full bg-card">
+              <img
+                src={caseItem.img}
+                alt={caseItem.name}
+                className="w-full h-full object-cover block"
+              />
+            </div>
           </Reveal>
 
           {/* Details layout */}
@@ -245,21 +225,36 @@ function CaseStudyPage() {
           {/* Video Testimonial Section for Bocafest */}
           {caseItem.video && (
             <Reveal className="border-t border-border/40 pt-16">
-              <div className="max-w-3xl mx-auto rounded-3xl overflow-hidden border border-border/40 shadow-2xl bg-card">
-                <div className="relative aspect-video w-full bg-[#0E1420] flex items-center justify-center">
-                  <iframe
-                    src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F195pbuEHhk%2F&show_text=false&width=560"
-                    className="absolute inset-0 w-full h-full border-none"
-                    scrolling="no"
-                    allowFullScreen={true}
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  />
-                </div>
-                <div className="p-8 border-t border-border/30 bg-card text-center">
-                  <h3 className="font-display font-semibold text-xl text-foreground mb-2">Video Testimonial Real</h3>
+              <div className="max-w-xl mx-auto rounded-3xl overflow-hidden border border-border/40 shadow-2xl bg-card">
+                <div className="p-8 border-b border-border/30 bg-card text-center space-y-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber/10 border border-amber/20 text-amber text-xs font-semibold">
+                    <span>Testimonio en Video</span>
+                  </span>
+                  <h3 className="font-display font-bold text-2xl text-foreground">Testimonio del Fundador</h3>
                   <p className="text-sm text-muted-foreground">
-                    Mira al fundador de Bocafest explicando cómo IDENZA transformó su negocio.
+                    Mira al fundador de Bocafest en TikTok explicando cómo IDENZA transformó sus ventas.
                   </p>
+                </div>
+                
+                <div className="p-8 bg-[#0E1420] text-white flex flex-col items-center justify-center text-center space-y-6">
+                  <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/20 text-amber shadow-lg">
+                    <ExternalLink className="w-8 h-8" />
+                  </div>
+                  <div className="space-y-2 max-w-md">
+                    <h4 className="text-lg font-display font-bold text-white">Ver video completo en TikTok</h4>
+                    <p className="text-xs text-white/70">
+                      Verificamos que tu cliente te busque y armamos tu catálogo con pedidos a WhatsApp.
+                    </p>
+                  </div>
+                  <a
+                    href={caseItem.video}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-amber px-8 py-4 rounded-xl text-sm font-semibold shadow-xl hover:shadow-amber/20 transition-all inline-flex items-center gap-2.5"
+                  >
+                    <span>Ver testimonio en TikTok</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
             </Reveal>
