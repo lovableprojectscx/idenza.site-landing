@@ -88,6 +88,12 @@ export function Footer() {
           >
             Florerías
           </Link>
+          <Link
+            to="/diseno-web-ayacucho"
+            className="text-[color:var(--bone)]/75 hover:text-white transition-colors"
+          >
+            Ayacucho
+          </Link>
         </div>
       </div>
       <div className="border-t border-white/10 py-6 text-center text-xs text-[color:var(--bone)]">
