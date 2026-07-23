@@ -9,6 +9,7 @@ import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
 import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
 import projSorpresas from "@/assets/proj-sorpresas.webp";
 import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
+import projGerenciaMockup from "@/assets/proj-gerenciaglobal-mockup.webp";
 
 export const Route = createFileRoute("/proyectos/")({
   head: () => ({
@@ -40,6 +41,13 @@ const WHATSAPP = "https://wa.me/51921585977?text=Hola,%20solicito%20diagnostico%
 
 function ProjectsPage() {
   const items = [
+    {
+      id: "gerenciaglobal",
+      name: "Grupo Gerencia Global",
+      cat: "Educación & Certificaciones · Perú",
+      desc: "Plataforma educativa con 120+ cursos, 7 escuelas y verificación QR.",
+      img: projGerenciaMockup,
+    },
     {
       id: "vadillo",
       name: "Vadillo Broker",

@@ -13,6 +13,7 @@ import projFlor from "@/assets/proj-flor.webp";
 import cajaSorpresa from "@/assets/caja-sorpresa.webp";
 import projDionelle from "@/assets/proj-dionelle.webp";
 import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
+import projGerenciaMockup from "@/assets/proj-gerenciaglobal-mockup.webp";
 
 import { ExternalLink } from "lucide-react";
 
@@ -133,6 +134,19 @@ const CASE_DATA: Record<string, {
     services: ["Branding Corporativo", "Diseño UX/UI", "Desarrollo Frontend", "SEO & Velocidad 99/100"],
     seoTitle: "Vadillo Broker · Caso de Estudio de Desarrollo Web | IDENZA",
     seoDesc: "Caso real: cómo Vadillo Broker (Seguros e Inmobiliaria) logró 99/100 en PageSpeed y 100/100 en SEO con IDENZA."
+  },
+  gerenciaglobal: {
+    name: "Grupo Gerencia Global",
+    cat: "Educación & Certificaciones · Perú",
+    challenge: "Estructurar una plataforma educativa masiva (120+ cursos y 7 escuelas especializadas) con validación pública de certificados mediante código QR para el sector público (MINSA, EsSalud) y privado.",
+    built: "Una plataforma educativa y de certificación en línea de alta velocidad en React/Vite, con motor de búsqueda instantánea de cursos, escuelas organizadas por área, verificación pública con QR y portal institucional.",
+    result: "Más de 5,000 estudiantes capacitados y 120+ programas activos con carga menor a 1 segundo. Validación instantánea de diplomas para convocatorias laborales y sector público.",
+    img: projGerenciaMockup,
+    siteUrl: "https://grupogerenciaglobal.com/",
+    tech: ["React", "Vite", "Tailwind CSS", "Buscador de Cursos", "Verificación QR", "WhatsApp API"],
+    services: ["Arquitectura Web Educativa", "Diseño UX/UI", "Sistema de Verificación QR", "Catálogo Interactivo"],
+    seoTitle: "Grupo Gerencia Global · Plataforma Web Educativa | IDENZA",
+    seoDesc: "Caso real: cómo Grupo Gerencia Global capacitó a +5,000 estudiantes con su catálogo de 120+ cursos y verificación QR desarrollada por IDENZA."
   }
 };
 
