@@ -216,12 +216,12 @@ export function LeadCapturePopup() {
 
   return (
     <>
-      {/* Sticky Collapsed Square Side Tab on Left Edge */}
+      {/* Sticky Collapsed Square Side Tab on Right Edge */}
       {!isOpen && (
         <button
           onClick={openWidget}
           aria-label="¿Cuántos buscan tu servicio este mes?"
-          className="fixed left-0 top-1/2 -translate-y-1/2 z-[990] bg-[#0E1420] border-y border-r border-[#E2A63D]/50 text-[#F4F2ED] py-4 px-2.5 rounded-r-md shadow-[4px_0_25px_rgba(0,0,0,0.6)] flex flex-col items-center gap-3 group hover:bg-[#161F30] transition-all cursor-pointer animate-in fade-in slide-in-from-left duration-300"
+          className="fixed right-0 top-1/2 -translate-y-1/2 z-[990] bg-[#0E1420] border-y border-l border-[#E2A63D]/50 text-[#F4F2ED] py-4 px-2.5 rounded-l-md shadow-[-4px_0_25px_rgba(0,0,0,0.6)] flex flex-col items-center gap-3 group hover:bg-[#161F30] transition-all cursor-pointer animate-in fade-in slide-in-from-right duration-300"
         >
           <div className="w-7 h-7 rounded-xs bg-[#E2A63D]/15 border border-[#E2A63D]/40 text-[#E2A63D] flex items-center justify-center group-hover:scale-105 transition-transform">
             <TrendingUp className="w-4 h-4" />
@@ -251,7 +251,7 @@ export function LeadCapturePopup() {
             className={`fixed z-[999] bg-[#F4F2ED] text-[#0E1420] border border-[#0E1420]/20 overflow-hidden shadow-[0_16px_50px_rgba(0,0,0,0.5)] transition-all duration-300 ${
               isMobile
                 ? "bottom-0 inset-x-0 rounded-t-xl border-b-0 max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom duration-300"
-                : "left-5 top-1/2 -translate-y-1/2 w-[340px] md:w-[360px] rounded-md max-h-[92vh] overflow-y-auto animate-in slide-in-from-left-6 duration-300"
+                : "right-5 top-1/2 -translate-y-1/2 w-[340px] md:w-[360px] rounded-md max-h-[92vh] overflow-y-auto animate-in slide-in-from-right-6 duration-300"
             }`}
           >
             {/* Header Image (4:3 format, occupies 100% width, no margins) */}
