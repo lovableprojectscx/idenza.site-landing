@@ -201,7 +201,7 @@ export function LeadCapturePopup() {
       localStorage.setItem("idza_popup_submitted", "true");
 
       // 3. Redirect to WhatsApp with prefilled message
-      const waMessage = "Hola Jack, quiero saber cuántas personas buscan mi servicio.";
+      const waMessage = "Hola IDENZA, quiero saber cuántas personas buscan mi servicio.";
       const waUrl = `https://wa.me/51921585977?text=${encodeURIComponent(waMessage)}`;
 
       window.location.href = waUrl;
