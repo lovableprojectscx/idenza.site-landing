@@ -56,14 +56,8 @@ export const Route = createFileRoute("/")({
               "logo": "https://idenza.site/logo.png",
               "image": "https://idenza.site/og-home.jpg",
               "description": "Diseño y desarrollo web para negocios en Perú. Creamos tu página web, catálogo online y sistema de pedidos a WhatsApp. Verificamos la demanda antes de construir.",
-              "priceRange": "S/850 - S/2900",
               "telephone": "+51921585977",
               "email": "jack@idenza.site",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Ayacucho",
-                "addressCountry": "PE"
-              },
               "areaServed": {
                 "@type": "Country",
                 "name": "Perú"

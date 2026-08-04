@@ -36,7 +36,7 @@ export const Route = createFileRoute("/fundador")({
               "@type": "AboutPage",
               "mainEntity": {
                 "@type": "Person",
-                "name": "Jack Franklyn Quispe Lujan",
+                "name": "Jack Lujan",
                 "jobTitle": "Fundador y Consultor de Crecimiento Digital",
                 "worksFor": {
                   "@type": "Organization",

@@ -55,7 +55,7 @@ function PrivacyPolicyPage() {
                   1. Titular del Tratamiento y Compromiso
                 </h2>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  En <strong className="text-foreground">IDENZA</strong> (representada por Jack Lujan, con domicilio en Ayacucho/Lima, Perú), nos tomamos muy en serio la privacidad de tu información. La presente Política de Privacidad describe cómo recopilamos, utilizamos, almacenamos y protegemos los datos personales que nos proporcionas a través de nuestro sitio web oficial <a href="https://idenza.site" className="text-amber underline">https://idenza.site</a> y nuestros canales directos de WhatsApp y correo electrónico.
+                  En <strong className="text-foreground">IDENZA</strong>, nos tomamos muy en serio la privacidad de tu información. La presente Política de Privacidad describe cómo recopilamos, utilizamos, almacenamos y protegemos los datos personales que nos proporcionas a través de nuestro sitio web oficial <a href="https://idenza.site" className="text-amber underline">https://idenza.site</a> y nuestros canales directos de WhatsApp y correo electrónico.
                 </p>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   Tratamos tus datos en estricto cumplimiento con la <strong className="text-foreground">Ley N° 29733 (Ley de Protección de Datos Personales del Perú)</strong> y su Reglamento aprobado por el Decreto Supremo N° 003-2013-JUS.
