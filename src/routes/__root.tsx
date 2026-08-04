@@ -12,6 +12,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Logo } from "../components/Logo";
+import { LeadCapturePopup } from "../components/LeadCapturePopup";
 
 function NotFoundComponent() {
   return (
@@ -193,6 +194,7 @@ function RootComponent() {
         </div>
       )}
       <Outlet />
+      <LeadCapturePopup />
       
       {/* Floating WhatsApp Button */}
       <a

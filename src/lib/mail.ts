@@ -96,3 +96,45 @@ Fecha: ${new Date().toLocaleString("es-PE", { timeZone: "America/Lima" })}`,
       return { success: false, error: (error as Error).message };
     }
   });
+
+export const sendPopupLeadEmail = createServerFn({ method: "POST" })
+  .validator((data: { whatsapp: string; origen?: string }) => data)
+  .handler(async ({ data }) => {
+    const host = process.env.SMTP_HOST || "smtp.zoho.com";
+    const port = parseInt(process.env.SMTP_PORT || "465");
+    const user = process.env.SMTP_USER;
+    const pass = process.env.SMTP_PASS;
+    const receiver = process.env.CONTACT_RECEIVER || user;
+
+    if (!user || !pass) {
+      console.warn("SMTP_USER or SMTP_PASS not set. Popup lead email notification skipped.");
+      return { success: true, warning: "SMTP omitted" };
+    }
+
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
+
+    const mailOptions = {
+      from: `IDENZA Web <${user}>`,
+      to: receiver,
+      subject: `🔥 Nuevo Lead desde Popup IDENZA - WhatsApp: ${data.whatsapp}`,
+      text: `Se ha capturado un nuevo lead en el Popup de IDENZA:
+
+- WhatsApp: ${data.whatsapp}
+- Origen: ${data.origen || "popup"}
+- Fecha: ${new Date().toLocaleString("es-PE", { timeZone: "America/Lima" })}`,
+    };
+
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log(`Popup lead email sent to ${receiver}`);
+      return { success: true };
+    } catch (error) {
+      console.error("Error sending popup lead email:", error);
+      return { success: false, error: (error as Error).message };
+    }
+  });
