@@ -134,17 +134,16 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const [showPreloader, setShowPreloader] = useState(true);
-  const [fadePreloader, setFadePreloader] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(false);
   const [progress, setProgress] = useState(false);
+  const [fadePreloader, setFadePreloader] = useState(false);
 
   useEffect(() => {
-    // Check if running on client (sessionStorage is defined)
     if (typeof window !== "undefined") {
       const hasLoaded = sessionStorage.getItem("idenza_preloaded");
-      if (hasLoaded) {
-        setShowPreloader(false);
-      } else {
+      if (!hasLoaded) {
+        setShowPreloader(true);
+
         const progressTimer = setTimeout(() => {
           setProgress(true);
         }, 50);
@@ -164,8 +163,6 @@ function RootComponent() {
           clearTimeout(unmountTimer);
         };
       }
-    } else {
-      setShowPreloader(false);
     }
   }, []);
 
