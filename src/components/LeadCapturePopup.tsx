@@ -8,6 +8,7 @@ export function LeadCapturePopup() {
   const routerState = useRouterState();
   const pathname = routerState.location.pathname;
 
+  const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [whatsapp, setWhatsapp] = useState("");
@@ -21,9 +22,13 @@ export function LeadCapturePopup() {
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const widgetRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Check route & suppression rules
   const isSuppressed = () => {
-    if (typeof window === "undefined") return true;
+    if (!isMounted || typeof window === "undefined") return true;
     if (pathname.startsWith("/diagnostico")) return true;
     if (sessionStorage.getItem("idza_popup_closed") === "true") return true;
     if (localStorage.getItem("idza_popup_submitted") === "true") return true;
@@ -202,7 +207,7 @@ export function LeadCapturePopup() {
     }
   };
 
-  if (isSuppressed()) return null;
+  if (!isMounted || isSuppressed()) return null;
 
   return (
     <>
