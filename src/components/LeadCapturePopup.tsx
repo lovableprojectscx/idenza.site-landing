@@ -273,7 +273,7 @@ export function LeadCapturePopup() {
             {/* Form Content */}
             <div className="p-5 space-y-4">
               <p className="text-xs md:text-sm text-[#0E1420]/80 leading-relaxed font-sans font-medium">
-                Te doy el número exacto de tu rubro y tu ciudad. Después vemos si te conviene hacer algo, o si te conviene no hacer nada.
+                Averigua cuántas personas buscan lo que vendes en tu ciudad. Te enviamos el dato exacto a tu WhatsApp, gratis y sin compromiso.
               </p>
 
               {serverError && (
