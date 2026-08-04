@@ -216,19 +216,19 @@ export function LeadCapturePopup() {
           <div className="w-8 h-8 rounded-xl bg-[#E2A63D]/15 border border-[#E2A63D]/40 text-[#E2A63D] flex items-center justify-center group-hover:scale-110 transition-transform">
             <TrendingUp className="w-4 h-4" />
           </div>
-          <span className="[writing-mode:vertical-lr] text-[11px] font-bold tracking-wider uppercase text-[#F4F2ED]/90 rotate-180 py-1">
+          <span className="[writing-mode:vertical-lr] text-[11px] font-bold tracking-wider uppercase text-[#F4F2ED]/90 rotate-180 py-1 font-sans">
             ¿Cuántos te buscan?
           </span>
         </button>
       )}
 
-      {/* Expanded Floating Side Card (Desktop: Floating Side Tab Card / Mobile: Bottom Drawer) */}
+      {/* Expanded Floating Side Card (Light Bone Background #F4F2ED) */}
       {isOpen && (
         <>
           {/* Mobile backdrop */}
           {isMobile && (
             <div
-              className="fixed inset-0 z-[998] bg-black/70 backdrop-blur-xs animate-in fade-in duration-200"
+              className="fixed inset-0 z-[998] bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
               onClick={closeWidget}
             />
           )}
@@ -238,17 +238,17 @@ export function LeadCapturePopup() {
             role="dialog"
             aria-modal="false"
             aria-labelledby="popup-title"
-            className={`fixed z-[999] bg-[#0E1420] text-[#F4F2ED] border border-[#E2A63D]/40 overflow-hidden shadow-[0_12px_45px_rgba(0,0,0,0.7)] transition-all duration-300 ${
+            className={`fixed z-[999] bg-[#F4F2ED] text-[#0E1420] border border-[#0E1420]/15 overflow-hidden shadow-[0_16px_50px_rgba(0,0,0,0.5)] transition-all duration-300 ${
               isMobile
                 ? "bottom-0 inset-x-0 rounded-t-3xl border-b-0 max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom duration-300"
-                : "left-5 top-1/2 -translate-y-1/2 w-[350px] md:w-[370px] rounded-2xl max-h-[92vh] overflow-y-auto animate-in slide-in-from-left-6 duration-300"
+                : "left-5 top-1/2 -translate-y-1/2 w-[340px] md:w-[360px] rounded-2xl max-h-[92vh] overflow-y-auto animate-in slide-in-from-left-6 duration-300"
             }`}
           >
             {/* Header Image (4:3 format, occupies 100% width, no margins) */}
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#161F30] shrink-0">
+            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#0E1420] shrink-0">
               <img
                 src={popupHeaderImg}
-                alt="¿Cuántas personas buscan tu servicio?"
+                alt="¿Cuántos te buscaron este mes?"
                 className="w-full h-full object-cover select-none"
                 loading="eager"
               />
@@ -266,21 +266,13 @@ export function LeadCapturePopup() {
             </div>
 
             {/* Form Content */}
-            <div className="p-5 md:p-6 space-y-4">
-              <div>
-                <h2
-                  id="popup-title"
-                  className="text-lg md:text-xl font-bold font-sans text-[#F4F2ED] tracking-tight leading-snug"
-                >
-                  ¿Cuántas personas buscaron tu servicio este mes?
-                </h2>
-                <p className="text-xs text-[#F4F2ED]/70 leading-relaxed mt-2">
-                  Te doy el número exacto de tu rubro y tu ciudad. Después vemos si te conviene hacer algo, o si te conviene no hacer nada.
-                </p>
-              </div>
+            <div className="p-5 space-y-4">
+              <p className="text-xs md:text-sm text-[#0E1420]/80 leading-relaxed font-sans font-medium">
+                Te doy el número exacto de tu rubro y tu ciudad. Después vemos si te conviene hacer algo, o si te conviene no hacer nada.
+              </p>
 
               {serverError && (
-                <div className="flex items-center gap-2 text-xs text-red-400 bg-red-950/40 border border-red-500/30 p-2.5 rounded-xl">
+                <div className="flex items-center gap-2 text-xs text-red-700 bg-red-100 border border-red-300 p-2.5 rounded-xl">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{serverError}</span>
                 </div>
@@ -306,7 +298,7 @@ export function LeadCapturePopup() {
                 <div className="space-y-1">
                   <label
                     htmlFor="popup-whatsapp"
-                    className="block text-[11px] font-bold uppercase tracking-wider text-[#F4F2ED]/80"
+                    className="block text-[11px] font-bold uppercase tracking-wider text-[#0E1420]/75"
                   >
                     Tu número de WhatsApp <span className="text-[#E2A63D]">*</span>
                   </label>
@@ -320,14 +312,14 @@ export function LeadCapturePopup() {
                       setWhatsapp(e.target.value);
                       if (phoneError) setPhoneError("");
                     }}
-                    className={`w-full bg-[#161F30] text-[#F4F2ED] placeholder:text-[#F4F2ED]/30 px-3.5 py-3 rounded-xl border text-sm transition-colors focus:outline-none ${
+                    className={`w-full bg-[#EAE8E1] text-[#0E1420] placeholder:text-[#0E1420]/40 px-3.5 py-3 rounded-xl border text-sm transition-colors focus:outline-none ${
                       phoneError
                         ? "border-red-500 focus:border-red-500"
-                        : "border-white/15 focus:border-[#E2A63D]"
+                        : "border-[#0E1420]/15 focus:border-[#E2A63D]"
                     }`}
                   />
                   {phoneError && (
-                    <p className="text-[11px] text-red-400 mt-1">{phoneError}</p>
+                    <p className="text-[11px] text-red-600 mt-1 font-medium">{phoneError}</p>
                   )}
                 </div>
 
@@ -341,14 +333,14 @@ export function LeadCapturePopup() {
                         setConsent(e.target.checked);
                         if (consentError) setConsentError("");
                       }}
-                      className="mt-0.5 w-4 h-4 rounded border-white/20 bg-[#161F30] text-[#E2A63D] focus:ring-[#E2A63D] focus:ring-offset-[#0E1420] shrink-0 cursor-pointer"
+                      className="mt-0.5 w-4 h-4 rounded border-[#0E1420]/30 bg-[#EAE8E1] text-[#E2A63D] focus:ring-[#E2A63D] focus:ring-offset-[#F4F2ED] shrink-0 cursor-pointer"
                     />
-                    <span className="text-[11px] text-[#F4F2ED]/70 group-hover:text-[#F4F2ED] transition-colors leading-normal">
+                    <span className="text-[11px] text-[#0E1420]/75 group-hover:text-[#0E1420] transition-colors leading-normal font-sans">
                       Acepto ser contactado y el tratamiento de mis datos según la{" "}
                       <Link
                         to="/politica-de-privacidad"
                         target="_blank"
-                        className="underline text-[#E2A63D] hover:text-[#d4962d] transition-colors"
+                        className="underline text-[#0E1420] font-semibold hover:text-[#E2A63D] transition-colors"
                         onClick={(e) => e.stopPropagation()}
                       >
                         política de privacidad
@@ -356,7 +348,7 @@ export function LeadCapturePopup() {
                     </span>
                   </label>
                   {consentError && (
-                    <p className="text-[11px] text-red-400 mt-1">{consentError}</p>
+                    <p className="text-[11px] text-red-600 mt-1 font-medium">{consentError}</p>
                   )}
                 </div>
 
@@ -377,7 +369,7 @@ export function LeadCapturePopup() {
                 </button>
 
                 {/* Microcopy */}
-                <p className="text-[11px] text-[#F4F2ED]/50 text-center pt-0.5 font-sans">
+                <p className="text-[11px] text-[#0E1420]/60 text-center pt-0.5 font-sans font-medium">
                   Te respondo en menos de 24 horas.
                 </p>
               </form>
