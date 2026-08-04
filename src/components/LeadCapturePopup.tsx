@@ -26,13 +26,18 @@ export function LeadCapturePopup() {
     setIsMounted(true);
   }, []);
 
-  // Check route & suppression rules
+  // Check route & permanent submission suppression rules
   const isSuppressed = () => {
     if (!isMounted || typeof window === "undefined") return true;
     if (pathname.startsWith("/diagnostico")) return true;
-    if (sessionStorage.getItem("idza_popup_closed") === "true") return true;
     if (localStorage.getItem("idza_popup_submitted") === "true") return true;
     return false;
+  };
+
+  // Check if closed in this session (should not auto-open, but side tab stays accessible)
+  const isClosedInSession = () => {
+    if (typeof window === "undefined") return false;
+    return sessionStorage.getItem("idza_popup_closed") === "true";
   };
 
   // Detect mobile screen size
@@ -49,24 +54,24 @@ export function LeadCapturePopup() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Trigger handlers (Auto show after 4s OR 25% scroll OR exit intent)
+  // Trigger handlers (Auto show after 4s OR 25% scroll OR exit intent ONLY if not closed in session)
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (isSuppressed()) return;
+    if (isSuppressed() || isClosedInSession() || isOpen) return;
 
     const timer = setTimeout(() => {
       openWidget();
     }, 4000);
 
     const handleExitIntent = (e: MouseEvent) => {
-      if (isSuppressed() || isOpen) return;
+      if (isSuppressed() || isClosedInSession() || isOpen) return;
       if (e.clientY <= 8) {
         openWidget();
       }
     };
 
     const handleScroll = () => {
-      if (isSuppressed() || isOpen) return;
+      if (isSuppressed() || isClosedInSession() || isOpen) return;
       const scrollPercent =
         window.scrollY /
         (document.documentElement.scrollHeight - window.innerHeight);
@@ -84,7 +89,7 @@ export function LeadCapturePopup() {
       window.removeEventListener("mouseleave", handleExitIntent);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname, isOpen]);
+  }, [pathname, isOpen, isMounted]);
 
   const openWidget = () => {
     if (isSuppressed()) return;
@@ -211,14 +216,14 @@ export function LeadCapturePopup() {
 
   return (
     <>
-      {/* Sticky Collapsed Side Tab on Left Edge */}
+      {/* Sticky Collapsed Square Side Tab on Left Edge */}
       {!isOpen && (
         <button
           onClick={openWidget}
           aria-label="¿Cuántos buscan tu servicio este mes?"
-          className="fixed left-0 top-1/2 -translate-y-1/2 z-[990] bg-[#0E1420] border-y border-r border-[#E2A63D]/50 text-[#F4F2ED] py-4 px-2.5 rounded-r-2xl shadow-[4px_0_25px_rgba(0,0,0,0.6)] flex flex-col items-center gap-3 group hover:bg-[#161F30] transition-all cursor-pointer animate-in fade-in slide-in-from-left duration-300"
+          className="fixed left-0 top-1/2 -translate-y-1/2 z-[990] bg-[#0E1420] border-y border-r border-[#E2A63D]/50 text-[#F4F2ED] py-4 px-2.5 rounded-r-md shadow-[4px_0_25px_rgba(0,0,0,0.6)] flex flex-col items-center gap-3 group hover:bg-[#161F30] transition-all cursor-pointer animate-in fade-in slide-in-from-left duration-300"
         >
-          <div className="w-8 h-8 rounded-xl bg-[#E2A63D]/15 border border-[#E2A63D]/40 text-[#E2A63D] flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div className="w-7 h-7 rounded-xs bg-[#E2A63D]/15 border border-[#E2A63D]/40 text-[#E2A63D] flex items-center justify-center group-hover:scale-105 transition-transform">
             <TrendingUp className="w-4 h-4" />
           </div>
           <span className="[writing-mode:vertical-lr] text-[11px] font-bold tracking-wider uppercase text-[#F4F2ED]/90 rotate-180 py-1 font-sans">
@@ -227,7 +232,7 @@ export function LeadCapturePopup() {
         </button>
       )}
 
-      {/* Expanded Floating Side Card (Light Bone Background #F4F2ED) */}
+      {/* Expanded Floating Side Card (Light Bone Background #F4F2ED - Square Corners) */}
       {isOpen && (
         <>
           {/* Mobile backdrop */}
@@ -243,10 +248,10 @@ export function LeadCapturePopup() {
             role="dialog"
             aria-modal="false"
             aria-labelledby="popup-title"
-            className={`fixed z-[999] bg-[#F4F2ED] text-[#0E1420] border border-[#0E1420]/15 overflow-hidden shadow-[0_16px_50px_rgba(0,0,0,0.5)] transition-all duration-300 ${
+            className={`fixed z-[999] bg-[#F4F2ED] text-[#0E1420] border border-[#0E1420]/20 overflow-hidden shadow-[0_16px_50px_rgba(0,0,0,0.5)] transition-all duration-300 ${
               isMobile
-                ? "bottom-0 inset-x-0 rounded-t-3xl border-b-0 max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom duration-300"
-                : "left-5 top-1/2 -translate-y-1/2 w-[340px] md:w-[360px] rounded-2xl max-h-[92vh] overflow-y-auto animate-in slide-in-from-left-6 duration-300"
+                ? "bottom-0 inset-x-0 rounded-t-xl border-b-0 max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom duration-300"
+                : "left-5 top-1/2 -translate-y-1/2 w-[340px] md:w-[360px] rounded-md max-h-[92vh] overflow-y-auto animate-in slide-in-from-left-6 duration-300"
             }`}
           >
             {/* Header Image (4:3 format, occupies 100% width, no margins) */}
@@ -264,7 +269,7 @@ export function LeadCapturePopup() {
               <button
                 onClick={closeWidget}
                 aria-label="Cerrar ventana"
-                className="absolute top-2.5 right-2.5 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/60 hover:bg-black/80 text-white transition-all cursor-pointer backdrop-blur-md shadow-md"
+                className="absolute top-2.5 right-2.5 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-sm bg-black/60 hover:bg-black/80 text-white transition-all cursor-pointer backdrop-blur-md shadow-md"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -277,7 +282,7 @@ export function LeadCapturePopup() {
               </p>
 
               {serverError && (
-                <div className="flex items-center gap-2 text-xs text-red-700 bg-red-100 border border-red-300 p-2.5 rounded-xl">
+                <div className="flex items-center gap-2 text-xs text-red-700 bg-red-100 border border-red-300 p-2.5 rounded-md">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{serverError}</span>
                 </div>
@@ -317,10 +322,10 @@ export function LeadCapturePopup() {
                       setWhatsapp(e.target.value);
                       if (phoneError) setPhoneError("");
                     }}
-                    className={`w-full bg-[#EAE8E1] text-[#0E1420] placeholder:text-[#0E1420]/40 px-3.5 py-3 rounded-xl border text-sm transition-colors focus:outline-none ${
+                    className={`w-full bg-[#EAE8E1] text-[#0E1420] placeholder:text-[#0E1420]/40 px-3.5 py-3 rounded-md border text-sm transition-colors focus:outline-none ${
                       phoneError
                         ? "border-red-500 focus:border-red-500"
-                        : "border-[#0E1420]/15 focus:border-[#E2A63D]"
+                        : "border-[#0E1420]/20 focus:border-[#E2A63D]"
                     }`}
                   />
                   {phoneError && (
@@ -338,7 +343,7 @@ export function LeadCapturePopup() {
                         setConsent(e.target.checked);
                         if (consentError) setConsentError("");
                       }}
-                      className="mt-0.5 w-4 h-4 rounded border-[#0E1420]/30 bg-[#EAE8E1] text-[#E2A63D] focus:ring-[#E2A63D] focus:ring-offset-[#F4F2ED] shrink-0 cursor-pointer"
+                      className="mt-0.5 w-4 h-4 rounded-xs border-[#0E1420]/30 bg-[#EAE8E1] text-[#E2A63D] focus:ring-[#E2A63D] focus:ring-offset-[#F4F2ED] shrink-0 cursor-pointer"
                     />
                     <span className="text-[11px] text-[#0E1420]/75 group-hover:text-[#0E1420] transition-colors leading-normal font-sans">
                       Acepto ser contactado y el tratamiento de mis datos según la{" "}
@@ -361,7 +366,7 @@ export function LeadCapturePopup() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#E2A63D] hover:bg-[#d4962d] text-[#0E1420] font-bold text-sm py-3.5 px-5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed mt-1"
+                  className="w-full bg-[#E2A63D] hover:bg-[#d4962d] text-[#0E1420] font-bold text-sm py-3.5 px-5 rounded-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed mt-1"
                 >
                   {isSubmitting ? (
                     <>
