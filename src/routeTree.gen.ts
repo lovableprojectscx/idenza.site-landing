@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProyectosRouteImport } from './routes/proyectos'
+import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as FundadorRouteImport } from './routes/fundador'
 import { Route as FloreriasRouteImport } from './routes/florerias'
 import { Route as DisenoWebAyacuchoRouteImport } from './routes/diseno-web-ayacucho'
@@ -26,6 +27,11 @@ import { Route as BlogPorQueMiPaginaWebNoVendeRouteImport } from './routes/blog.
 const ProyectosRoute = ProyectosRouteImport.update({
   id: '/proyectos',
   path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadRoute = PoliticaDePrivacidadRouteImport.update({
+  id: '/politica-de-privacidad',
+  path: '/politica-de-privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FundadorRoute = FundadorRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/diseno-web-ayacucho': typeof DisenoWebAyacuchoRoute
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/proyectos': typeof ProyectosRouteWithChildren
   '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/diseno-web-ayacucho': typeof DisenoWebAyacuchoRoute
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
   '/blog': typeof BlogIndexRoute
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/diseno-web-ayacucho': typeof DisenoWebAyacuchoRoute
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/proyectos': typeof ProyectosRouteWithChildren
   '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/diseno-web-ayacucho'
     | '/florerias'
     | '/fundador'
+    | '/politica-de-privacidad'
     | '/proyectos'
     | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/diseno-web-ayacucho'
     | '/florerias'
     | '/fundador'
+    | '/politica-de-privacidad'
     | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
     | '/blog'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/diseno-web-ayacucho'
     | '/florerias'
     | '/fundador'
+    | '/politica-de-privacidad'
     | '/proyectos'
     | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
@@ -189,6 +201,7 @@ export interface RootRouteChildren {
   DisenoWebAyacuchoRoute: typeof DisenoWebAyacuchoRoute
   FloreriasRoute: typeof FloreriasRoute
   FundadorRoute: typeof FundadorRoute
+  PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
   ProyectosRoute: typeof ProyectosRouteWithChildren
 }
 
@@ -199,6 +212,13 @@ declare module '@tanstack/react-router' {
       path: '/proyectos'
       fullPath: '/proyectos'
       preLoaderRoute: typeof ProyectosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidad': {
+      id: '/politica-de-privacidad'
+      path: '/politica-de-privacidad'
+      fullPath: '/politica-de-privacidad'
+      preLoaderRoute: typeof PoliticaDePrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fundador': {
@@ -323,6 +343,7 @@ const rootRouteChildren: RootRouteChildren = {
   DisenoWebAyacuchoRoute: DisenoWebAyacuchoRoute,
   FloreriasRoute: FloreriasRoute,
   FundadorRoute: FundadorRoute,
+  PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
   ProyectosRoute: ProyectosRouteWithChildren,
 }
 export const routeTree = rootRouteImport

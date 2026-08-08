@@ -28,7 +28,8 @@ import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
 export const Route = createFileRoute("/diseno-web-ayacucho")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/diseno-web-ayacucho" }
+      { rel: "canonical", href: "https://idenza.site/diseno-web-ayacucho" },
+      { rel: "preload", as: "image", href: heroClientAyacucho, fetchpriority: "high" }
     ],
     meta: [
       { title: "Diseño de Páginas Web en Ayacucho | IDENZA" },
@@ -345,6 +346,9 @@ function HeroSection() {
         <img
           src={heroClientAyacucho}
           alt="Diseño de Páginas Web en Ayacucho — IDENZA"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
           className="w-full h-full object-cover object-[center_30%] sm:object-[right_center] opacity-75 md:opacity-65 scale-100"
         />
         {/* Soft Contrast Gradient Overlay */}

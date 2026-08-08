@@ -135,62 +135,13 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [isMounted, setIsMounted] = useState(false);
-  const [showPreloader, setShowPreloader] = useState(false);
-  const [progress, setProgress] = useState(false);
-  const [fadePreloader, setFadePreloader] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-
-    if (typeof window !== "undefined") {
-      const hasLoaded = sessionStorage.getItem("idenza_preloaded");
-      if (!hasLoaded) {
-        setShowPreloader(true);
-
-        const progressTimer = setTimeout(() => {
-          setProgress(true);
-        }, 50);
-
-        const fadeTimer = setTimeout(() => {
-          setFadePreloader(true);
-        }, 1200);
-
-        const unmountTimer = setTimeout(() => {
-          setShowPreloader(false);
-          sessionStorage.setItem("idenza_preloaded", "true");
-        }, 1700);
-
-        return () => {
-          clearTimeout(progressTimer);
-          clearTimeout(fadeTimer);
-          clearTimeout(unmountTimer);
-        };
-      }
-    }
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {showPreloader && (
-        <div 
-          className={`fixed inset-0 z-[9999] bg-[#0E1420] flex flex-col items-center justify-center transition-opacity duration-500 ease-out select-none ${fadePreloader ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-        >
-          <div className="flex flex-col items-center gap-6 max-w-[180px] w-full px-4">
-            <div className="h-8 w-auto">
-              <Logo light />
-            </div>
-            <div className="h-[2px] w-full bg-white/10 rounded-full overflow-hidden relative">
-              <div 
-                className="h-full bg-[#E2A63D] rounded-full transition-all ease-out"
-                style={{
-                  width: progress ? "100%" : "0%",
-                  transitionDuration: "1200ms"
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      )}
       <Outlet />
       <LeadCapturePopup />
       

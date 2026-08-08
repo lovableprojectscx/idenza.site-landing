@@ -238,7 +238,7 @@ export function LeadCapturePopup() {
           {/* Mobile backdrop */}
           {isMobile && (
             <div
-              className="fixed inset-0 z-[998] bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+              className="fixed inset-0 z-[998] bg-black/75 transition-opacity duration-200"
               onClick={closeWidget}
             />
           )}
@@ -254,6 +254,10 @@ export function LeadCapturePopup() {
                 : "right-5 top-1/2 -translate-y-1/2 w-[340px] md:w-[360px] rounded-md max-h-[92vh] overflow-y-auto animate-in slide-in-from-right-6 duration-300"
             }`}
           >
+            <h2 id="popup-title" className="sr-only">
+              Diagnóstico IDENZA: Averigua cuántos buscan tu servicio este mes
+            </h2>
+
             {/* Header Image (4:3 format, occupies 100% width, no margins) */}
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#0E1420] shrink-0">
               <img

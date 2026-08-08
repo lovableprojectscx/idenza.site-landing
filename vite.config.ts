@@ -12,5 +12,9 @@ export default defineConfig({
         preset: "vercel", // Build for Vercel Serverless
       }),
     ],
+    build: {
+      target: "esnext",
+      cssMinify: true,
+    },
   },
 });
