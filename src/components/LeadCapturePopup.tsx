@@ -70,14 +70,18 @@ export function LeadCapturePopup() {
       }
     };
 
+    let ticking = false;
     const handleScroll = () => {
       if (isSuppressed() || isClosedInSession() || isOpen) return;
-      const scrollPercent =
-        window.scrollY /
-        (document.documentElement.scrollHeight - window.innerHeight);
-
-      if (scrollPercent >= 0.25) {
-        openWidget();
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalHeight > 0 && window.scrollY / totalHeight >= 0.25) {
+            openWidget();
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
