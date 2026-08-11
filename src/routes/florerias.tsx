@@ -234,6 +234,7 @@ function Hero() {
         loop
         muted
         playsInline
+        preload="none"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src="/florerias.mp4" type="video/mp4" />
