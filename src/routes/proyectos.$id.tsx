@@ -142,7 +142,7 @@ const CASE_DATA: Record<string, {
     built: "Una plataforma educativa y de certificación en línea de alta velocidad en React/Vite, con motor de búsqueda instantánea de cursos, escuelas organizadas por área, verificación pública con QR y portal institucional.",
     result: "Más de 5,000 estudiantes capacitados y 120+ programas activos con carga menor a 1 segundo. Validación instantánea de diplomas para convocatorias laborales y sector público.",
     img: projGerenciaMockup,
-    siteUrl: "https://grupogerenciaglobal.com/",
+    siteUrl: "https://grupogerencia-cert.lovable.app/",
     tech: ["React", "Vite", "Tailwind CSS", "Buscador de Cursos", "Verificación QR", "WhatsApp API"],
     services: ["Arquitectura Web Educativa", "Diseño UX/UI", "Sistema de Verificación QR", "Catálogo Interactivo"],
     seoTitle: "Grupo Gerencia Global · Plataforma Web Educativa | IDENZA",
