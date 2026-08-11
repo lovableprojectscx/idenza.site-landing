@@ -2,12 +2,12 @@
   "redirects": [
     {
       "source": "/r/grupogerenci-t742",
-      "destination": "https://inspira-certificate-hub.lovable.app/",
+      "destination": "https://grupogerencia-cert.lovable.app/",
       "permanent": false
     },
     {
       "source": "/r/:slug*",
-      "destination": "https://inspira-certificate-hub.lovable.app/",
+      "destination": "https://grupogerencia-cert.lovable.app/",
       "permanent": false
     },
     {
