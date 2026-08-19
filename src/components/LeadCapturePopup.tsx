@@ -231,7 +231,7 @@ export function LeadCapturePopup() {
             <TrendingUp className="w-4 h-4" />
           </div>
           <span className="[writing-mode:vertical-lr] text-[11px] font-bold tracking-wider uppercase text-[#F4F2ED]/90 rotate-180 py-1 font-sans">
-            ¿Cuántos te buscan?
+            ¿Por qué no compran?
           </span>
         </button>
       )}
@@ -259,14 +259,14 @@ export function LeadCapturePopup() {
             }`}
           >
             <h2 id="popup-title" className="sr-only">
-              Diagnóstico IDENZA: Averigua cuántos buscan tu servicio este mes
+              Diagnóstico IDENZA: ¿Cuántos entran a tu página y no te compran?
             </h2>
 
             {/* Header Image (4:3 format, occupies 100% width, no margins) */}
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#0E1420] shrink-0">
               <img
                 src={popupHeaderImg}
-                alt="¿Cuántos te buscaron este mes?"
+                alt="¿Cuántos entran a tu página y no te compran?"
                 className="w-full h-full object-cover select-none"
                 loading="eager"
               />
@@ -286,7 +286,7 @@ export function LeadCapturePopup() {
             {/* Form Content */}
             <div className="p-5 space-y-4">
               <p className="text-xs md:text-sm text-[#0E1420]/80 leading-relaxed font-sans font-medium">
-                Averigua cuántas personas buscan lo que vendes en tu ciudad. Te enviamos el dato exacto a tu WhatsApp, gratis y sin compromiso.
+                Descubre por qué tus visitas no se convierten en clientes o cuántas personas buscan lo que vendes en tu ciudad. Te enviamos el reporte a tu WhatsApp, gratis y sin compromiso.
               </p>
 
               {serverError && (
@@ -382,7 +382,7 @@ export function LeadCapturePopup() {
                       <span>Enviando...</span>
                     </>
                   ) : (
-                    <span>Quiero mi número</span>
+                    <span>Quiero mi diagnóstico gratis</span>
                   )}
                 </button>
 
