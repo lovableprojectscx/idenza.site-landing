@@ -92,19 +92,16 @@ function FounderPage() {
                 
                 <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
                   <p>
-                    Soy Jack, de Ayacucho, y me apasiona la tecnología. Fundé IDENZA para resolver algo que viví en carne propia: negocios que invierten en digital y no ven ventas.
+                    De Ayacucho, apasionado por la tecnología. Dirijo IDENZA bajo una idea simple. La mayoría de negocios no necesita una página más bonita, necesita una que venda.
                   </p>
                   <p>
-                    Empecé como muchos, gastando en publicidad y persiguiendo clientes que nunca compraban. Ahí entendí que el problema no era la web bonita, sino construir sin saber si alguien te buscaba de verdad.
+                    Hay tres fallas que se repiten siempre. Se construye sin saber si alguien está buscando. Se diseña para lucir bien y no para cerrar. Y nadie mide si funcionó.
                   </p>
                   <p>
-                    Por eso IDENZA trabaja al revés. Primero audito tu negocio y verifico la demanda con datos, y recién ahí construyo tu sistema. Código propio, sin plantillas, y un panel que mide tus resultados en vivo.
+                    IDENZA resuelve las tres. Verifico si te conviene antes de cobrarte, construyo con estrategia de venta adentro, y medimos el resultado. Si tu negocio todavía no necesita una web, te lo digo.
                   </p>
                   <p>
-                    No soy una agencia impersonal. Cuando trabajas con IDENZA, te atiende el fundador, de frente, con datos y sin humo.
-                  </p>
-                  <p className="font-medium text-foreground italic border-l-2 border-amber pl-4 mt-8">
-                    Mi visión: construir la consultora que le enseñe a los negocios peruanos a crecer en digital sin quemar su plata.
+                    Código propio, sin plantillas. No una agencia impersonal, sino una consultora donde el fundador te atiende de frente.
                   </p>
                 </div>
 

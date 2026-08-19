@@ -793,10 +793,16 @@ function About() {
               </h2>
               <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  De Ayacucho, apasionado por la tecnología. Empecé invirtiendo en publicidad y persiguiendo clientes que nunca compraban. Ahí aprendí que el problema nunca fue la web bonita. Era construir sin verificar que tu cliente ya te buscaba.
+                  De Ayacucho, apasionado por la tecnología. Dirijo IDENZA bajo una idea simple. La mayoría de negocios no necesita una página más bonita, necesita una que venda.
                 </p>
                 <p>
-                  Por eso dirijo IDENZA con una regla: primero verificamos la demanda, después construimos. Código propio, sin plantillas, resultados medidos en vivo. No una agencia impersonal, sino una consultora donde el fundador te atiende de frente.
+                  Hay tres fallas que se repiten siempre. Se construye sin saber si alguien está buscando. Se diseña para lucir bien y no para cerrar. Y nadie mide si funcionó.
+                </p>
+                <p>
+                  IDENZA resuelve las tres. Verifico si te conviene antes de cobrarte, construyo con estrategia de venta adentro, y medimos el resultado. Si tu negocio todavía no necesita una web, te lo digo.
+                </p>
+                <p>
+                  Código propio, sin plantillas. No una agencia impersonal, sino una consultora donde el fundador te atiende de frente.
                 </p>
               </div>
             </Reveal>
