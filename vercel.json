@@ -14,6 +14,11 @@
       "source": "/tracker.js",
       "destination": "https://hub.idenza.site/tracker.js",
       "permanent": true
+    },
+    {
+      "source": "/portafolio",
+      "destination": "/proyectos",
+      "permanent": false
     }
   ]
 }
