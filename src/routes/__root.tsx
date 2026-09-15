@@ -142,7 +142,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
-      <LeadCapturePopup />
+      {!isBio && <LeadCapturePopup />}
       
       {/* Floating WhatsApp Button (hidden on /bio) */}
       {isMounted && !isBio && (

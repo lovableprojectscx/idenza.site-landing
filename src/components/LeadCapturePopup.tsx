@@ -22,12 +22,20 @@ export function LeadCapturePopup() {
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const widgetRef = useRef<HTMLDivElement | null>(null);
 
+  const isBioPath =
+    (pathname && (pathname === "/bio" || pathname.startsWith("/bio/") || pathname.startsWith("/bio"))) ||
+    (typeof window !== "undefined" &&
+      (window.location.pathname === "/bio" ||
+        window.location.pathname.startsWith("/bio/") ||
+        window.location.pathname.startsWith("/bio")));
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   // Check route & permanent submission suppression rules
   const isSuppressed = () => {
+    if (isBioPath) return true;
     if (!isMounted || typeof window === "undefined") return true;
     if (pathname.startsWith("/diagnostico") || pathname.startsWith("/bio")) return true;
     if (localStorage.getItem("idza_popup_submitted") === "true") return true;
@@ -216,7 +224,7 @@ export function LeadCapturePopup() {
     }
   };
 
-  if (!isMounted || isSuppressed()) return null;
+  if (!isMounted || isSuppressed() || isBioPath) return null;
 
   return (
     <>
