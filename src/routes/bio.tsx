@@ -94,6 +94,34 @@ function BioPage() {
     }
   }, []);
 
+  // Ensure no lingering popups or side tabs ever appear on /bio
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      sessionStorage.setItem("idza_popup_closed", "true");
+    } catch {
+      // Safe fallback
+    }
+
+    const cleanLingeringPopups = () => {
+      const popups = document.querySelectorAll(
+        '[aria-labelledby="popup-title"], [aria-label*="buscan tu servicio"], .fixed.z-\\[999\\], .fixed.z-\\[990\\]',
+      );
+      popups.forEach((el) => el.remove());
+    };
+
+    cleanLingeringPopups();
+    const t1 = setTimeout(cleanLingeringPopups, 50);
+    const t2 = setTimeout(cleanLingeringPopups, 300);
+    const t3 = setTimeout(cleanLingeringPopups, 1000);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
+
   const handleButtonClick = (buttonName: string, destinationUrl: string) => {
     trackButtonClick(buttonName, destinationUrl);
   };

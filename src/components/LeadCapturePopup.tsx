@@ -22,22 +22,20 @@ export function LeadCapturePopup() {
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const widgetRef = useRef<HTMLDivElement | null>(null);
 
-  const isBioPath =
-    (pathname && (pathname === "/bio" || pathname.startsWith("/bio/") || pathname.startsWith("/bio"))) ||
-    (typeof window !== "undefined" &&
-      (window.location.pathname === "/bio" ||
-        window.location.pathname.startsWith("/bio/") ||
-        window.location.pathname.startsWith("/bio")));
+  const href = typeof window !== "undefined" ? window.location.href.toLowerCase() : "";
+  const path = (pathname || "").toLowerCase();
+  const isBioPath = href.includes("/bio") || path.includes("/bio");
 
   useEffect(() => {
+    if (isBioPath) return;
     setIsMounted(true);
-  }, []);
+  }, [isBioPath]);
 
   // Check route & permanent submission suppression rules
   const isSuppressed = () => {
     if (isBioPath) return true;
     if (!isMounted || typeof window === "undefined") return true;
-    if (pathname.startsWith("/diagnostico") || pathname.startsWith("/bio")) return true;
+    if (path.startsWith("/diagnostico") || path.startsWith("/bio")) return true;
     if (localStorage.getItem("idza_popup_submitted") === "true") return true;
     return false;
   };
@@ -294,7 +292,9 @@ export function LeadCapturePopup() {
             {/* Form Content */}
             <div className="p-5 space-y-4">
               <p className="text-xs md:text-sm text-[#0E1420]/80 leading-relaxed font-sans font-medium">
-                Descubre por qué tus visitas no se convierten en clientes o cuántas personas buscan lo que vendes en tu ciudad. Te enviamos el reporte a tu WhatsApp, gratis y sin compromiso.
+                Descubre por qué tus visitas no se convierten en clientes o cuántas personas buscan
+                lo que vendes en tu ciudad. Te enviamos el reporte a tu WhatsApp, gratis y sin
+                compromiso.
               </p>
 
               {serverError && (
