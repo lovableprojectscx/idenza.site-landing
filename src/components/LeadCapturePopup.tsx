@@ -29,7 +29,7 @@ export function LeadCapturePopup() {
   // Check route & permanent submission suppression rules
   const isSuppressed = () => {
     if (!isMounted || typeof window === "undefined") return true;
-    if (pathname.startsWith("/diagnostico")) return true;
+    if (pathname.startsWith("/diagnostico") || pathname.startsWith("/bio")) return true;
     if (localStorage.getItem("idza_popup_submitted") === "true") return true;
     return false;
   };

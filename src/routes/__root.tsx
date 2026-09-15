@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -130,6 +131,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const routerState = useRouterState();
+  const isBio = routerState.location.pathname.startsWith("/bio");
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -141,8 +144,8 @@ function RootComponent() {
       <Outlet />
       <LeadCapturePopup />
       
-      {/* Floating WhatsApp Button */}
-      {isMounted && (
+      {/* Floating WhatsApp Button (hidden on /bio) */}
+      {isMounted && !isBio && (
         <a
           href="https://wa.me/51921585977?text=Hola%20IDENZA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n"
           target="_blank"

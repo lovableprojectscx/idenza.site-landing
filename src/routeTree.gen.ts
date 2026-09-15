@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProyectosRouteImport } from './routes/proyectos'
+import { Route as PortafolioRouteImport } from './routes/portafolio'
 import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as FundadorRouteImport } from './routes/fundador'
 import { Route as FloreriasRouteImport } from './routes/florerias'
@@ -17,6 +18,7 @@ import { Route as DisenoWebAyacuchoRouteImport } from './routes/diseno-web-ayacu
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as BioRouteImport } from './routes/bio'
 import { Route as AyacuchoRouteImport } from './routes/ayacucho'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProyectosIndexRouteImport } from './routes/proyectos.index'
@@ -27,6 +29,11 @@ import { Route as BlogPorQueMiPaginaWebNoVendeRouteImport } from './routes/blog.
 const ProyectosRoute = ProyectosRouteImport.update({
   id: '/proyectos',
   path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortafolioRoute = PortafolioRouteImport.update({
+  id: '/portafolio',
+  path: '/portafolio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadRoute = PoliticaDePrivacidadRouteImport.update({
@@ -64,6 +71,11 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BioRoute = BioRouteImport.update({
+  id: '/bio',
+  path: '/bio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AyacuchoRoute = AyacuchoRouteImport.update({
   id: '/ayacucho',
   path: '/ayacucho',
@@ -99,6 +111,7 @@ const BlogPorQueMiPaginaWebNoVendeRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ayacucho': typeof AyacuchoRoute
+  '/bio': typeof BioRoute
   '/blog': typeof BlogRouteWithChildren
   '/contacto': typeof ContactoRoute
   '/diagnostico': typeof DiagnosticoRoute
@@ -106,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/portafolio': typeof PortafolioRoute
   '/proyectos': typeof ProyectosRouteWithChildren
   '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
@@ -115,12 +129,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ayacucho': typeof AyacuchoRoute
+  '/bio': typeof BioRoute
   '/contacto': typeof ContactoRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/diseno-web-ayacucho': typeof DisenoWebAyacuchoRoute
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/portafolio': typeof PortafolioRoute
   '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
   '/blog': typeof BlogIndexRoute
@@ -130,6 +146,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ayacucho': typeof AyacuchoRoute
+  '/bio': typeof BioRoute
   '/blog': typeof BlogRouteWithChildren
   '/contacto': typeof ContactoRoute
   '/diagnostico': typeof DiagnosticoRoute
@@ -137,6 +154,7 @@ export interface FileRoutesById {
   '/florerias': typeof FloreriasRoute
   '/fundador': typeof FundadorRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/portafolio': typeof PortafolioRoute
   '/proyectos': typeof ProyectosRouteWithChildren
   '/blog/por-que-mi-pagina-web-no-vende': typeof BlogPorQueMiPaginaWebNoVendeRoute
   '/proyectos/$id': typeof ProyectosIdRoute
@@ -148,6 +166,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ayacucho'
+    | '/bio'
     | '/blog'
     | '/contacto'
     | '/diagnostico'
@@ -155,6 +174,7 @@ export interface FileRouteTypes {
     | '/florerias'
     | '/fundador'
     | '/politica-de-privacidad'
+    | '/portafolio'
     | '/proyectos'
     | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
@@ -164,12 +184,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/ayacucho'
+    | '/bio'
     | '/contacto'
     | '/diagnostico'
     | '/diseno-web-ayacucho'
     | '/florerias'
     | '/fundador'
     | '/politica-de-privacidad'
+    | '/portafolio'
     | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
     | '/blog'
@@ -178,6 +200,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/ayacucho'
+    | '/bio'
     | '/blog'
     | '/contacto'
     | '/diagnostico'
@@ -185,6 +208,7 @@ export interface FileRouteTypes {
     | '/florerias'
     | '/fundador'
     | '/politica-de-privacidad'
+    | '/portafolio'
     | '/proyectos'
     | '/blog/por-que-mi-pagina-web-no-vende'
     | '/proyectos/$id'
@@ -195,6 +219,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AyacuchoRoute: typeof AyacuchoRoute
+  BioRoute: typeof BioRoute
   BlogRoute: typeof BlogRouteWithChildren
   ContactoRoute: typeof ContactoRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
@@ -202,6 +227,7 @@ export interface RootRouteChildren {
   FloreriasRoute: typeof FloreriasRoute
   FundadorRoute: typeof FundadorRoute
   PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
+  PortafolioRoute: typeof PortafolioRoute
   ProyectosRoute: typeof ProyectosRouteWithChildren
 }
 
@@ -212,6 +238,13 @@ declare module '@tanstack/react-router' {
       path: '/proyectos'
       fullPath: '/proyectos'
       preLoaderRoute: typeof ProyectosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portafolio': {
+      id: '/portafolio'
+      path: '/portafolio'
+      fullPath: '/portafolio'
+      preLoaderRoute: typeof PortafolioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidad': {
@@ -261,6 +294,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bio': {
+      id: '/bio'
+      path: '/bio'
+      fullPath: '/bio'
+      preLoaderRoute: typeof BioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ayacucho': {
@@ -337,6 +377,7 @@ const ProyectosRouteWithChildren = ProyectosRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AyacuchoRoute: AyacuchoRoute,
+  BioRoute: BioRoute,
   BlogRoute: BlogRouteWithChildren,
   ContactoRoute: ContactoRoute,
   DiagnosticoRoute: DiagnosticoRoute,
@@ -344,6 +385,7 @@ const rootRouteChildren: RootRouteChildren = {
   FloreriasRoute: FloreriasRoute,
   FundadorRoute: FundadorRoute,
   PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
+  PortafolioRoute: PortafolioRoute,
   ProyectosRoute: ProyectosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
