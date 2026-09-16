@@ -78,40 +78,38 @@ La ruta `/bio` fue diseñada específicamente para el 95% de tráfico provenient
 
 ## 4. Arquitectura de Caché y Entrega de Contenidos
 
-Para resolver el problema donde los navegadores retenían versiones cacheadas del sitio e impedían ver cambios recientes hasta borrar la caché manualmente, el sistema implementa un **blindaje en 4 niveles**:
+Para garantizar que los cambios en contenido o código se reflejen de inmediato sin borrar caché, y al mismo tiempo optimizar el consumo de datos de fuentes y videos estáticos:
 
 ### 1. Borde CDN en Vercel (`vercel.json`)
 ```json
 {
   "headers": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
-        { "key": "Pragma", "value": "no-cache" },
-        { "key": "Expires", "value": "0" }
-      ]
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "source": "/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*\\.(?:mp4|webm|png|jpg|jpeg|gif|svg|ico|webp|txt|xml))",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
     }
   ]
 }
 ```
-- **Documentos HTML:** Tienen `no-store, must-revalidate`, forzando a que cualquier visita siempre solicite el HTML fresco al servidor.
-- **Assets versionados con hash:** Tienen `max-age=31536000, immutable`. Al cambiar el código, el HTML solicita un nuevo hash, logrando actualización instantánea sin perder velocidad de carga.
+- **Assets y Fuentes versionadas:** Tienen `max-age=31536000, immutable` para carga instantánea.
+- **Media estática (videos y logos):** Tienen revalidación periódica para evitar descargas repetidas de varios megabytes en móviles.
 
 ### 2. Motor Nitro (`vite.config.ts`)
-Configuración de `routeRules` para que el compilador del servidor genere las cabeceras HTTP de Vercel en `.vercel/output/config.json`:
+Configuración limpia de `routeRules` en Nitro para persistir la inmutabilidad de assets y fuentes:
 ```ts
 nitro({
   preset: "vercel",
   routeRules: {
     "/assets/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
-    "/**": { headers: { "cache-control": "no-cache, no-store, must-revalidate", pragma: "no-cache", expires: "0" } },
+    "/fonts/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
   },
 })
 ```

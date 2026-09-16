@@ -14,12 +14,8 @@ export default defineConfig({
           "/assets/**": {
             headers: { "cache-control": "public, max-age=31536000, immutable" },
           },
-          "/**": {
-            headers: {
-              "cache-control": "no-cache, no-store, must-revalidate",
-              pragma: "no-cache",
-              expires: "0",
-            },
+          "/fonts/**": {
+            headers: { "cache-control": "public, max-age=31536000, immutable" },
           },
         },
       }),

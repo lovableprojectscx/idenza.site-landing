@@ -30,20 +30,23 @@ Para eliminar este comportamiento sin sacrificar el rendimiento, se diseñó una
 ┌───────────────────────────────────────────────────────────┐
 │ 1. Vercel Edge Network (vercel.json)                      │
 │    - /assets/(.*) -> public, max-age=31536000, immutable  │
-│    - /(.*)        -> no-cache, no-store, must-revalidate  │
+│    - /fonts/(.*)  -> public, max-age=31536000, immutable  │
+│    - Media (mp4, webp, png, etc.) -> max-age=86400        │
 └──────────────────────────┬────────────────────────────────┘
                            │
                            ▼
 ┌───────────────────────────────────────────────────────────┐
 │ 2. Motor Nitro en Vite (vite.config.ts)                   │
 │    - routeRules en preset vercel genera config.json       │
+│    - Assets y fuentes con cache inmutable de 1 año        │
 └──────────────────────────┬────────────────────────────────┘
                            │
                            ▼
 ┌───────────────────────────────────────────────────────────┐
 │ 3. Servidor SSR (src/server.ts)                           │
-│    - Inyecta no-cache en toda respuesta text/html         │
-│    - Bloquea caché de proxies intermedios y redes móviles │
+│    - Inyecta no-cache/no-store SOLO en text/html          │
+│    - Asegura que nuevas visitas reciban HTML fresco       │
+│    - Protege el consumo de datos en móviles y proxies     │
 └──────────────────────────┬────────────────────────────────┘
                            │
                            ▼
@@ -59,23 +62,27 @@ Para eliminar este comportamiento sin sacrificar el rendimiento, se diseñó una
 ## 3. Detalle de Implementación por Archivo
 
 ### Capa 1: `vercel.json`
-Ubicado en la raíz del proyecto. Configura las reglas de cabeceras HTTP que aplica la red CDN global de Vercel antes de tocar la función serverless:
+Ubicado en la raíz del proyecto. Configura las reglas de cabeceras HTTP que aplica la red CDN global de Vercel para recursos estáticos y redirecciones:
 
 ```json
 {
   "headers": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
-        { "key": "Pragma", "value": "no-cache" },
-        { "key": "Expires", "value": "0" }
-      ]
-    },
-    {
       "source": "/assets/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*\\.(?:mp4|webm|png|jpg|jpeg|gif|svg|ico|webp|txt|xml))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]
     }
   ]
@@ -83,7 +90,7 @@ Ubicado en la raíz del proyecto. Configura las reglas de cabeceras HTTP que apl
 ```
 
 ### Capa 2: `vite.config.ts`
-El plugin de Nitro compila la salida para Vercel (`.vercel/output/config.json`). Definir `routeRules` asegura que Nitro escriba estas reglas durante el build de producción:
+El plugin de Nitro compila la salida para Vercel (`.vercel/output/config.json`). Definir `routeRules` asegura que Nitro escriba las reglas inmutables de assets y fuentes sin generar una sobre-anulación de comodín:
 
 ```ts
 nitro({
@@ -92,12 +99,8 @@ nitro({
     "/assets/**": {
       headers: { "cache-control": "public, max-age=31536000, immutable" },
     },
-    "/**": {
-      headers: {
-        "cache-control": "no-cache, no-store, must-revalidate",
-        pragma: "no-cache",
-        expires: "0",
-      },
+    "/fonts/**": {
+      headers: { "cache-control": "public, max-age=31536000, immutable" },
     },
   },
 })
