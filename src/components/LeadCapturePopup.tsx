@@ -12,6 +12,8 @@ export function LeadCapturePopup() {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  // Móvil: la pestaña lateral se muestra solo después de pasar el hero
+  const [pastHero, setPastHero] = useState(false);
   const [whatsapp, setWhatsapp] = useState("");
   const [consent, setConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
@@ -60,6 +62,28 @@ export function LeadCapturePopup() {
 
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Detecta si el usuario ya pasó el hero (primera <section> de la página; si no hay, una pantalla)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const checkPastHero = () => {
+      const hero = document.querySelector("main section, section");
+      const heroBottom = hero
+        ? hero.getBoundingClientRect().bottom + window.scrollY
+        : window.innerHeight;
+      setPastHero(window.scrollY > heroBottom - 80);
+    };
+
+    checkPastHero();
+    window.addEventListener("scroll", checkPastHero, { passive: true });
+    window.addEventListener("resize", checkPastHero);
+
+    return () => {
+      window.removeEventListener("scroll", checkPastHero);
+      window.removeEventListener("resize", checkPastHero);
+    };
+  }, [pathname]);
 
   // Trigger handlers (Auto show after 4s OR 25% scroll OR exit intent ONLY if not closed in session)
   useEffect(() => {
@@ -229,7 +253,7 @@ export function LeadCapturePopup() {
   return (
     <>
       {/* Sticky Collapsed Square Side Tab on Right Edge */}
-      {!isOpen && (
+      {!isOpen && (!isMobile || pastHero) && (
         <button
           onClick={openWidget}
           aria-label="¿Cuántos buscan tu servicio este mes?"

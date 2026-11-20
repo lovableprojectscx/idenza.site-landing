@@ -713,15 +713,9 @@ function TrackerMock() {
           <div className="text-[10px] eyebrow text-muted-foreground tracking-wider">Métricas del negocio</div>
           <div className="text-xl font-display font-semibold text-foreground mt-0.5">IDENZA Tracker</div>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-1.5">
-          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber/40 bg-amber/10 text-amber select-none">
-            Ejemplo
-          </span>
-          <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-500/20 select-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>EN VIVO</span>
-          </div>
-        </div>
+        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber/40 bg-amber/10 text-amber select-none">
+          Ejemplo
+        </span>
       </div>
 
       {/* Stats Grid */}

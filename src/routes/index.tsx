@@ -217,8 +217,8 @@ function StatsStrip() {
   const stats = [
     { value: 1284, decimals: 0, suffix: "", phrase: "Tráfico mensual promedio" },
     { value: 97, decimals: 0, suffix: "", phrase: "Pedidos cerrados directo" },
-    { value: 7.6, decimals: 1, suffix: "%", phrase: "Tasa conversión real" },
-    { value: 2, decimals: 0, suffix: "", phrase: "Minutos por pedido", source: "Fuente: Caso Florerías" },
+    { value: 7.6, decimals: 1, suffix: "%", phrase: "Tasa de conversión" },
+    { value: 2, decimals: 0, suffix: "", phrase: "Minutos por pedido" },
   ];
 
   return (
@@ -237,11 +237,6 @@ function StatsStrip() {
                 <div className="text-[10px] md:text-xs font-sans font-medium uppercase tracking-wider text-muted-foreground leading-snug max-w-[150px]">
                   {s.phrase}
                 </div>
-                {s.source && (
-                  <div className="text-[9px] text-muted-foreground/60 select-none">
-                    {s.source}
-                  </div>
-                )}
               </div>
             </Reveal>
           ))}
@@ -623,15 +618,9 @@ function TrackerMock() {
           <div className="text-[10px] eyebrow text-muted-foreground tracking-wider">Métricas del negocio</div>
           <div className="text-xl font-display font-semibold text-foreground mt-0.5">IDENZA Tracker</div>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-1.5">
-          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber/40 bg-amber/10 text-amber select-none">
-            Ejemplo
-          </span>
-          <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-500/20 select-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>EN VIVO</span>
-          </div>
-        </div>
+        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber/40 bg-amber/10 text-amber select-none">
+          Ejemplo
+        </span>
       </div>
 
       {/* Stats Grid */}
