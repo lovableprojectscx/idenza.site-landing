@@ -10,11 +10,12 @@ import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
 import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
 import projSorpresas from "@/assets/proj-sorpresas.webp";
 import jackPhoto from "@/assets/jack.webp";
+import { ORG_ID, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/" }
+      { rel: "canonical", href: "https://www.idenza.site/" }
     ],
     meta: [
       { title: "Diseño Web en Perú · Páginas y Catálogos WhatsApp | IDENZA" },
@@ -26,14 +27,14 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/" },
+      { property: "og:url", content: "https://www.idenza.site/" },
       { property: "og:title", content: "Diseño Web en Perú · Páginas y Catálogos WhatsApp | IDENZA" },
       {
         property: "og:description",
         content:
           "Creamos tu página web, catálogo online y sistema de pedidos a WhatsApp. Verificamos la demanda antes de construir. Diseño web con datos, en Perú.",
       },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -43,69 +44,46 @@ export const Route = createFileRoute("/")({
         content:
           "Creamos tu página web, catálogo online y sistema de pedidos a WhatsApp. Verificamos la demanda antes de construir. Diseño web con datos, en Perú.",
       },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
-      {
-        script: [
-          {
-            type: "application/ld+json",
-            children: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "name": "IDENZA",
-              "url": "https://idenza.site",
-              "logo": "https://idenza.site/logo.png",
-              "image": "https://idenza.site/og-home.jpg",
-              "description": "Diseño y desarrollo web para negocios en Perú. Creamos tu página web, catálogo online y sistema de pedidos a WhatsApp. Verificamos la demanda antes de construir.",
-              "telephone": "+51921585977",
-              "email": "jack@idenza.site",
-              "areaServed": {
-                "@type": "Country",
-                "name": "Perú"
-              },
-              "founder": {
-                "@type": "Person",
-                "name": "Jack Lujan",
-                "jobTitle": "Fundador"
-              },
-              "sameAs": [
-                "https://www.facebook.com/idenza.site",
-                "https://www.tiktok.com/@idenza.site",
-                "https://www.instagram.com/jacklujanm"
-              ],
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Planes IDENZA",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": { "@type": "Service", "name": "Presencia · Web + WhatsApp" },
-                    "price": "850",
-                    "priceCurrency": "PEN"
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": { "@type": "Service", "name": "Catálogo Mensual · con Tracker" },
-                    "price": "500",
-                    "priceCurrency": "PEN"
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": { "@type": "Service", "name": "Catálogo único" },
-                    "price": "1650",
-                    "priceCurrency": "PEN"
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": { "@type": "Service", "name": "Tienda Completa" },
-                    "price": "2900",
-                    "priceCurrency": "PEN"
-                  }
-                ]
-              }
-            }),
-          },
-        ],
-      },
+      { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
+    ],
+    scripts: [
+      // La organización completa (ProfessionalService) y WebSite se declaran en __root.tsx.
+      // Aquí solo se agrega el catálogo de planes visible en el inicio, ligado por @id.
+      jsonLdScript({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": ORG_ID,
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Planes IDENZA",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": "Presencia · Web + WhatsApp" },
+              "price": "850",
+              "priceCurrency": "PEN"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": "Catálogo Mensual · con Tracker" },
+              "price": "500",
+              "priceCurrency": "PEN"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": "Catálogo único" },
+              "price": "1650",
+              "priceCurrency": "PEN"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": "Tienda Completa" },
+              "price": "2900",
+              "priceCurrency": "PEN"
+            }
+          ]
+        }
+      }),
     ],
   }),
   component: Landing,
@@ -227,7 +205,8 @@ function Counter({ value, decimals = 0, suffix = "" }: { value: number; decimals
 
   return (
     <span className="font-sans font-medium tabular-nums text-5xl md:text-7xl tracking-tight text-foreground">
-      <span ref={ref}>0</span>
+      {/* SSR: el HTML del servidor ya trae el número final; la animación 0→valor corre al entrar en vista */}
+      <span ref={ref}>{value.toFixed(decimals)}</span>
       {suffix}
     </span>
   );
@@ -236,15 +215,20 @@ function Counter({ value, decimals = 0, suffix = "" }: { value: number; decimals
 /* ---------- STATS STRIP ---------- */
 function StatsStrip() {
   const stats = [
-    { value: 1284, decimals: 0, suffix: "", phrase: "Tráfico mensual promedio", source: "Fuente: Google Analytics" },
-    { value: 97, decimals: 0, suffix: "", phrase: "Pedidos cerrados directo", source: "Fuente: IDENZA Tracker" },
-    { value: 7.6, decimals: 1, suffix: "%", phrase: "Tasa conversión real", source: "Fuente: IDENZA Tracker" },
+    { value: 1284, decimals: 0, suffix: "", phrase: "Tráfico mensual promedio" },
+    { value: 97, decimals: 0, suffix: "", phrase: "Pedidos cerrados directo" },
+    { value: 7.6, decimals: 1, suffix: "%", phrase: "Tasa conversión real" },
     { value: 2, decimals: 0, suffix: "", phrase: "Minutos por pedido", source: "Fuente: Caso Florerías" },
   ];
 
   return (
     <section className="border-t border-border/40 bg-[color:var(--secondary)]/35">
       <div className="mx-auto max-w-5xl px-6 md:px-10 py-16 md:py-20">
+        <div className="flex justify-center mb-10">
+          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber/40 bg-amber/10 text-amber select-none">
+            Ejemplo
+          </span>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
           {stats.map((s, i) => (
             <Reveal key={s.phrase} delay={i * 0.05}>
@@ -253,9 +237,11 @@ function StatsStrip() {
                 <div className="text-[10px] md:text-xs font-sans font-medium uppercase tracking-wider text-muted-foreground leading-snug max-w-[150px]">
                   {s.phrase}
                 </div>
-                <div className="text-[9px] text-muted-foreground/60 select-none">
-                  {s.source}
-                </div>
+                {s.source && (
+                  <div className="text-[9px] text-muted-foreground/60 select-none">
+                    {s.source}
+                  </div>
+                )}
               </div>
             </Reveal>
           ))}
@@ -637,9 +623,14 @@ function TrackerMock() {
           <div className="text-[10px] eyebrow text-muted-foreground tracking-wider">Métricas del negocio</div>
           <div className="text-xl font-display font-semibold text-foreground mt-0.5">IDENZA Tracker</div>
         </div>
-        <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-500/20 select-none">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>EN VIVO</span>
+        <div className="flex flex-wrap items-center justify-end gap-1.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber/40 bg-amber/10 text-amber select-none">
+            Ejemplo
+          </span>
+          <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-500/20 select-none">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>EN VIVO</span>
+          </div>
         </div>
       </div>
 
@@ -762,6 +753,7 @@ function Plans() {
                 </ul>
                 <a
                   href={WHATSAPP}
+                  data-ubicacion="planes"
                   className={p.highlight ? "btn-amber w-full" : "btn-outline w-full"}
                 >
                   Solicitar

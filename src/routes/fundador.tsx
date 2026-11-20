@@ -5,11 +5,12 @@ import { Footer } from "@/components/Footer";
 import { Reveal } from "./index"; // reuse Reveal animation wrapper
 import jackPhoto from "@/assets/jack.webp";
 import { Facebook, Instagram } from "lucide-react";
+import { ORG_ID, SITE_URL, breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/fundador")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/fundador" }
+      { rel: "canonical", href: "https://www.idenza.site/fundador" }
     ],
     meta: [
       { title: "Jack Lujan, Fundador de IDENZA · Diseño Web Perú" },
@@ -17,42 +18,38 @@ export const Route = createFileRoute("/fundador")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/fundador" },
+      { property: "og:url", content: "https://www.idenza.site/fundador" },
       { property: "og:title", content: "Jack Lujan, Fundador de IDENZA · Diseño Web Perú" },
       { property: "og:description", content: "Conoce a Jack Lujan, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Jack Lujan, Fundador de IDENZA · Diseño Web Perú" },
       { name: "twitter:description", content: "Conoce a Jack Lujan, fundador de IDENZA. Diseño y desarrollo web con datos para negocios en Perú. Sin plantillas, sin humo, con la cara de por medio." },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
-      {
-        script: [
-          {
-            type: "application/ld+json",
-            children: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "AboutPage",
-              "mainEntity": {
-                "@type": "Person",
-                "name": "Jack Lujan",
-                "jobTitle": "Fundador y Consultor de Crecimiento Digital",
-                "worksFor": {
-                  "@type": "Organization",
-                  "name": "IDENZA",
-                  "url": "https://idenza.site"
-                },
-                "sameAs": [
-                  "https://www.facebook.com/jack.quispe.313",
-                  "https://www.instagram.com/jacklujanm/",
-                  "https://www.tiktok.com/@jackfql"
-                ]
-              }
-            }),
-          },
-        ],
-      },
+      { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
+    ],
+    scripts: [
+      jsonLdScript({
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "url": `${SITE_URL}/fundador`,
+        "mainEntity": {
+          "@type": "Person",
+          "@id": `${SITE_URL}/fundador#person`,
+          "name": "Jack Lujan",
+          "jobTitle": "Fundador",
+          "url": `${SITE_URL}/fundador`,
+          "image": `${SITE_URL}${jackPhoto}`,
+          "worksFor": { "@id": ORG_ID },
+          "sameAs": [
+            "https://www.facebook.com/jack.quispe.313",
+            "https://www.instagram.com/jacklujanm/",
+            "https://www.tiktok.com/@jackfql"
+          ]
+        }
+      }),
+      jsonLdScript(breadcrumbSchema([{ name: "Fundador", path: "/fundador" }])),
     ],
   }),
   component: FounderPage,

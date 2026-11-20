@@ -10,11 +10,12 @@ import projVelorioMockup from "@/assets/proj-velorio-mockup.webp";
 import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
 import projSorpresas from "@/assets/proj-sorpresas.webp";
 import jackPhoto from "@/assets/jack.webp";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/florerias")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/florerias" }
+      { rel: "canonical", href: "https://www.idenza.site/florerias" }
     ],
     meta: [
       { title: "Página Web y Catálogo WhatsApp para Florerías | IDENZA" },
@@ -22,59 +23,58 @@ export const Route = createFileRoute("/florerias")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/florerias" },
+      { property: "og:url", content: "https://www.idenza.site/florerias" },
       { property: "og:title", content: "Página Web y Catálogo WhatsApp para Florerías | IDENZA" },
       { property: "og:description", content: "Catálogo web para tu florería: tus seguidores arman su pedido y te llega a WhatsApp ya cotizado. Diseño web para florerías en Perú, sin comisiones." },
-      { property: "og:image", content: "https://idenza.site/og-florerias.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-florerias.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Página Web y Catálogo WhatsApp para Florerías | IDENZA" },
       { name: "twitter:description", content: "Catálogo web para tu florería: tus seguidores arman su pedido y te llega a WhatsApp ya cotizado. Diseño web para florerías en Perú, sin comisiones." },
-      { name: "twitter:image", content: "https://idenza.site/og-florerias.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/og-florerias.jpg" },
+    ],
+    scripts: [
       {
-        script: [
-          {
-            type: "application/ld+json",
-            children: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "¿Cuánto demora tener mi web lista?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Tu sistema queda listo en pocos días, según el plan que elijas." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "¿La web es mía?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Sí. El dominio se registra a tu nombre. La web es completamente tuya." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "¿Necesito saber de tecnología?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "No. Tú administras tu catálogo tan fácil como quien sube una foto a Facebook." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "¿Qué incluye la mensualidad?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Hosting, mantenimiento, el panel Tracker y tu reporte mensual de resultados." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "¿Sirve para mi rubro?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Sí. Trabajamos con cualquier negocio que reciba clientes por redes o Google y quiera convertirlos en pedidos a su WhatsApp." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "¿Aparezco en Google?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Sí. Tu web queda estructurada para que Google y los buscadores con IA te encuentren y te citen." }
-                }
-              ]
-            }),
-          },
-        ],
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuánto demora tener mi web lista?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Tu sistema queda listo en pocos días, según el plan que elijas." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿La web es mía?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Sí. El dominio se registra a tu nombre. La web es completamente tuya." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Necesito saber de tecnología?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Tú administras tu catálogo tan fácil como quien sube una foto a Facebook." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué incluye la mensualidad?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Hosting, mantenimiento, el panel Tracker y tu reporte mensual de resultados." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Sirve para mi rubro?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Sí. Trabajamos con cualquier negocio que reciba clientes por redes o Google y quiera convertirlos en pedidos a su WhatsApp." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Aparezco en Google?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Sí. Tu web queda estructurada para que Google y los buscadores con IA te encuentren y te citen." }
+            }
+          ]
+        }),
       },
+      jsonLdScript(breadcrumbSchema([{ name: "Florerías", path: "/florerias" }])),
     ],
   }),
   component: Landing,
@@ -251,7 +251,7 @@ function Hero() {
           Del "me encanta" al pedido pagado en tu WhatsApp. Diseñamos tu catálogo virtual para florería en Perú con pedidos de arreglos por WhatsApp y tienda online de flores.
         </p>
         <div className="mt-10">
-          <a href={WHATSAPP} className="btn-amber text-base py-4 px-8">Cotiza tu sistema</a>
+          <a href={WHATSAPP} data-ubicacion="hero" className="btn-amber text-base py-4 px-8">Cotiza tu sistema</a>
         </div>
       </div>
     </section>
@@ -489,7 +489,7 @@ function StickyDemo() {
         <PhoneLoop />
       </div>
       <div className="mx-auto max-w-7xl px-6 md:px-10 pb-24 flex justify-center">
-        <a href={WHATSAPP} className="btn-amber">Quiero uno así</a>
+        <a href={WHATSAPP} data-ubicacion="demo" className="btn-amber">Quiero uno así</a>
       </div>
     </section>
   );
@@ -693,7 +693,7 @@ function Tracker() {
           No promesas. <span className="text-[color:var(--amber-deep)]">Datos.</span>
         </h2>
         <div className="mt-8">
-          <a href={WHATSAPP} className="btn-outline px-8 py-3.5 rounded-xl text-sm">Ver el panel →</a>
+          <a href={WHATSAPP} data-ubicacion="panel" className="btn-outline px-8 py-3.5 rounded-xl text-sm">Ver el panel →</a>
         </div>
       </Reveal>
       <Reveal delay={0.1}><TrackerMock /></Reveal>
@@ -713,9 +713,14 @@ function TrackerMock() {
           <div className="text-[10px] eyebrow text-muted-foreground tracking-wider">Métricas del negocio</div>
           <div className="text-xl font-display font-semibold text-foreground mt-0.5">IDENZA Tracker</div>
         </div>
-        <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-500/20 select-none">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>EN VIVO</span>
+        <div className="flex flex-wrap items-center justify-end gap-1.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber/40 bg-amber/10 text-amber select-none">
+            Ejemplo
+          </span>
+          <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-500/20 select-none">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>EN VIVO</span>
+          </div>
         </div>
       </div>
 
@@ -802,7 +807,7 @@ function Plans() {
                     </li>
                   ))}
                 </ul>
-                <a href={WHATSAPP} className={p.highlight ? "btn-amber w-full rounded-xl text-sm" : "btn-outline w-full rounded-xl text-sm"}>Empezar</a>
+                <a href={WHATSAPP} data-ubicacion="planes" className={p.highlight ? "btn-amber w-full rounded-xl text-sm" : "btn-outline w-full rounded-xl text-sm"}>Empezar</a>
               </div>
             </Reveal>
           ))}
@@ -932,7 +937,7 @@ function Footer() {
         </div>
         <div className="flex flex-col gap-2">
           <div className="eyebrow text-[color:var(--bone)]/50 mb-2">Contacto</div>
-          <a href={WHATSAPP} className="hover:text-[color:var(--amber-brand)]">WhatsApp +51 921 585 977</a>
+          <a href={WHATSAPP} data-ubicacion="footer" className="hover:text-[color:var(--amber-brand)]">WhatsApp +51 921 585 977</a>
           <a href="mailto:jack@idenza.site" className="hover:text-[color:var(--amber-brand)]">jack@idenza.site</a>
           <a
             href="https://www.facebook.com/idenza.site"

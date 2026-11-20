@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "./index";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/blog" }
+      { rel: "canonical", href: "https://www.idenza.site/blog" }
     ],
     meta: [
       { title: "Blog · Estrategias de Crecimiento y Venta Web | IDENZA" },
@@ -15,17 +16,18 @@ export const Route = createFileRoute("/blog/")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/blog" },
+      { property: "og:url", content: "https://www.idenza.site/blog" },
       { property: "og:title", content: "Blog · Estrategias de Crecimiento y Venta Web | IDENZA" },
       { property: "og:description", content: "Artículos, guías y análisis sobre diseño web de conversión, investigación de demanda real y analítica con inteligencia artificial en Perú." },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Blog · Estrategias de Crecimiento y Venta Web | IDENZA" },
       { name: "twitter:description", content: "Artículos, guías y análisis sobre diseño web de conversión, investigación de demanda real y analítica con inteligencia artificial en Perú." },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
     ],
+    scripts: [jsonLdScript(breadcrumbSchema([{ name: "Blog", path: "/blog" }]))],
   }),
   component: BlogIndexPage,
 });

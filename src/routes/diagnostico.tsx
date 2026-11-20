@@ -5,11 +5,13 @@ import { Footer } from "@/components/Footer";
 import { Reveal } from "./index"; // reuse Reveal animation wrapper
 
 import { sendDiagnosticEmail } from "@/lib/mail";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo";
+import { trackGenerateLead, trackWhatsAppClick } from "@/lib/analytics";
 
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/diagnostico" }
+      { rel: "canonical", href: "https://www.idenza.site/diagnostico" }
     ],
     meta: [
       { title: "Diagnóstico Web Gratis para tu Negocio | IDENZA" },
@@ -17,17 +19,18 @@ export const Route = createFileRoute("/diagnostico")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/diagnostico" },
+      { property: "og:url", content: "https://www.idenza.site/diagnostico" },
       { property: "og:title", content: "Diagnóstico Web Gratis para tu Negocio | IDENZA" },
       { property: "og:description", content: "Solicita tu diagnóstico web gratis: te mostramos si tus clientes te buscan y dónde pierdes ventas. Sin compromiso. IDENZA, diseño web en Perú." },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Diagnóstico Web Gratis para tu Negocio | IDENZA" },
       { name: "twitter:description", content: "Solicita tu diagnóstico web gratis: te mostramos si tus clientes te buscan y dónde pierdes ventas. Sin compromiso. IDENZA, diseño web en Perú." },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
     ],
+    scripts: [jsonLdScript(breadcrumbSchema([{ name: "Diagnóstico", path: "/diagnostico" }]))],
   }),
   component: DiagnosticPage,
 });
@@ -48,6 +51,9 @@ function DiagnosticPage() {
 
     setSubmitted(true);
 
+    // GA4: lead generado (sin datos personales)
+    trackGenerateLead("diagnostico");
+
     // Call server function to send Zoho Mail notification
     try {
       await sendDiagnosticEmail({ data: formData });
@@ -62,6 +68,7 @@ function DiagnosticPage() {
     const waUrl = `https://wa.me/51921585977?text=${encodedText}`;
 
     // Redirect to WhatsApp
+    trackWhatsAppClick("formulario_diagnostico");
     window.location.href = waUrl;
   };
 

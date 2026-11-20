@@ -4,11 +4,12 @@ import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "./index";
 import { Calendar, Clock, User, ArrowLeft, ArrowRight, MessageSquareCode, ShieldCheck } from "lucide-react";
+import { LOGO_URL, ORG_ID, SITE_URL, breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/por-que-mi-pagina-web-no-vende")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/blog/por-que-mi-pagina-web-no-vende" }
+      { rel: "canonical", href: "https://www.idenza.site/blog/por-que-mi-pagina-web-no-vende" }
     ],
     meta: [
       { title: "¿Por qué mi página web no vende? 5 razones y cómo arreglarlo | IDENZA" },
@@ -16,52 +17,61 @@ export const Route = createFileRoute("/blog/por-que-mi-pagina-web-no-vende")({
       { property: "og:type", content: "article" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/blog/por-que-mi-pagina-web-no-vende" },
+      { property: "og:url", content: "https://www.idenza.site/blog/por-que-mi-pagina-web-no-vende" },
       { property: "og:title", content: "¿Por qué mi página web no vende? 5 razones y cómo arreglarlo | IDENZA" },
       { property: "og:description", content: "Tienes una página web pero no genera ventas. Estas son las 5 razones más comunes por las que tu web no vende, y cómo convertirla en un sistema que sí trae clientes." },
-      { property: "og:image", content: "https://idenza.site/blog/web-not-selling-feature.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/blog/web-not-selling-feature.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "675" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "¿Por qué mi página web no vende? 5 razones y cómo arreglarlo | IDENZA" },
       { name: "twitter:description", content: "Tienes una página web pero no genera ventas. Estas son las 5 razones más comunes por las que tu web no vende, y cómo convertirla en un sistema que sí trae clientes." },
-      { name: "twitter:image", content: "https://idenza.site/blog/web-not-selling-feature.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/blog/web-not-selling-feature.jpg" },
       { name: "article:published_time", content: "2026-07-19T12:00:00-05:00" },
       { name: "article:author", content: "Jack Lujan" },
       { name: "article:section", content: "Estrategia Digital" },
+    ],
+    scripts: [
       {
-        script: [
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.idenza.site/blog/por-que-mi-pagina-web-no-vende"
+          },
+          "headline": "¿Por qué mi página web no vende? 5 razones y cómo arreglarlo",
+          "description": "Tienes una página web pero no genera ventas. Estas son las 5 razones más comunes por las que tu web no vende, y cómo convertirla en un sistema que sí trae clientes.",
+          "image": "https://www.idenza.site/blog/web-not-selling-feature.jpg",
+          "author": {
+            "@type": "Person",
+            "@id": `${SITE_URL}/fundador#person`,
+            "name": "Jack Lujan",
+            "url": `${SITE_URL}/fundador`
+          },
+          "publisher": {
+            "@type": "Organization",
+            "@id": ORG_ID,
+            "name": "IDENZA",
+            "logo": {
+              "@type": "ImageObject",
+              "url": LOGO_URL
+            }
+          },
+          "datePublished": "2026-07-19T12:00:00-05:00",
+          "dateModified": "2026-07-19T12:00:00-05:00"
+        })
+      },
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Blog", path: "/blog" },
           {
-            type: "application/ld+json",
-            children: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BlogPosting",
-              "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "https://idenza.site/blog/por-que-mi-pagina-web-no-vende"
-              },
-              "headline": "¿Por qué mi página web no vende? 5 razones y cómo arreglarlo",
-              "description": "Tienes una página web pero no genera ventas. Estas son las 5 razones más comunes por las que tu web no vende, y cómo convertirla en un sistema que sí trae clientes.",
-              "image": "https://idenza.site/blog/web-not-selling-feature.jpg",
-              "author": {
-                "@type": "Person",
-                "name": "Jack Lujan",
-                "url": "https://idenza.site/fundador"
-              },
-              "publisher": {
-                "@type": "Organization",
-                "name": "IDENZA",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://idenza.site/logo.png"
-                }
-              },
-              "datePublished": "2026-07-19T12:00:00-05:00",
-              "dateModified": "2026-07-19T12:00:00-05:00"
-            })
-          }
-        ]
-      }
+            name: "¿Por qué mi página web no vende? 5 razones y cómo arreglarlo",
+            path: "/blog/por-que-mi-pagina-web-no-vende",
+          },
+        ]),
+      ),
     ],
   }),
   component: BlogPostPage,
@@ -251,6 +261,7 @@ function BlogPostPage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href={WHATSAPP_CTA}
+                    data-ubicacion="blog_articulo"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-amber w-full sm:w-auto text-sm px-8 py-4 font-semibold"

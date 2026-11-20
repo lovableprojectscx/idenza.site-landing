@@ -14,6 +14,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Logo } from "../components/Logo";
 import { LeadCapturePopup } from "../components/LeadCapturePopup";
+import { SITE_URL, jsonLdScript, organizationSchema, websiteSchema } from "../lib/seo";
+import { GA4_ID, GA4_INIT_SNIPPET, installWhatsAppClickTracking } from "../lib/analytics";
 
 function NotFoundComponent() {
   return (
@@ -87,11 +89,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Consultoría de crecimiento digital en Perú. Sistemas de venta basados en demanda real y comprobada: investigación, marca, web de conversión y datos con IA.",
       },
       { name: "author", content: "IDENZA · Jack Lujan" },
-      {
-        name: "keywords",
-        content:
-          "consultoría digital Perú, sistemas de venta, web que vende, investigación de demanda, tracker con IA, Jack Lujan, IDENZA",
-      },
       { property: "og:title", content: "IDENZA · Demanda real antes que diseño" },
       {
         property: "og:description",
@@ -109,8 +106,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Consultoría de crecimiento digital en Perú. Sistemas de venta basados en demanda real y comprobada: investigación, marca, web de conversión y datos con IA.",
       },
       { name: "theme-color", content: "#0E1420" },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: `${SITE_URL}/og-home.jpg` },
+      { name: "twitter:image", content: `${SITE_URL}/og-home.jpg` },
       { name: "geo.region", content: "PE-AYC" },
       { name: "geo.placename", content: "Ayacucho" },
       { name: "geo.position", content: "-13.15878;-74.22393" },
@@ -135,6 +132,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/brand/favicon.png", type: "image/png" },
       { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "preconnect", href: "https://www.googletagmanager.com" },
+    ],
+    scripts: [
+      // Google Analytics 4: async, no bloquea el render
+      { src: `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`, async: true },
+      { children: GA4_INIT_SNIPPET },
+      // JSON-LD de todo el sitio
+      jsonLdScript(organizationSchema),
+      jsonLdScript(websiteSchema),
     ],
   }),
   shellComponent: RootShell,
@@ -169,6 +175,9 @@ function RootComponent() {
     setIsMounted(true);
   }, []);
 
+  // GA4: click_whatsapp para cualquier enlace a wa.me (ubicación vía data-ubicacion)
+  useEffect(() => installWhatsAppClickTracking(), []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
@@ -180,6 +189,7 @@ function RootComponent() {
           href="https://wa.me/51921585977?text=Hola%20IDENZA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n"
           target="_blank"
           rel="noopener noreferrer"
+          data-ubicacion="flotante"
           className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full shadow-[0_4px_14px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.6)] hover:-translate-y-0.5 transition-all duration-300 active:scale-95"
           aria-label="Escribir por WhatsApp"
         >

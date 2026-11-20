@@ -44,6 +44,18 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+// Cabeceras de seguridad para todas las respuestas del servidor (HTML y server functions).
+const SECURITY_HEADERS: Record<string, string> = {
+  "x-content-type-options": "nosniff",
+  "referrer-policy": "strict-origin-when-cross-origin",
+  "content-security-policy": "frame-ancestors 'self'",
+};
+
+function withSecurityHeaders(headers: Headers): Headers {
+  for (const [key, value] of Object.entries(SECURITY_HEADERS)) headers.set(key, value);
+  return headers;
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
@@ -54,7 +66,7 @@ export default {
       // Prevent HTML document caching so visitors always see immediate changes
       const contentType = normalized.headers.get("content-type") ?? "";
       if (contentType.includes("text/html")) {
-        const headers = new Headers(normalized.headers);
+        const headers = withSecurityHeaders(new Headers(normalized.headers));
         headers.set("cache-control", "no-cache, no-store, must-revalidate");
         headers.set("pragma", "no-cache");
         headers.set("expires", "0");
@@ -65,15 +77,21 @@ export default {
         });
       }
 
-      return normalized;
+      return new Response(normalized.body, {
+        status: normalized.status,
+        statusText: normalized.statusText,
+        headers: withSecurityHeaders(new Headers(normalized.headers)),
+      });
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
         status: 500,
-        headers: {
-          "content-type": "text/html; charset=utf-8",
-          "cache-control": "no-cache, no-store, must-revalidate",
-        },
+        headers: withSecurityHeaders(
+          new Headers({
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "no-cache, no-store, must-revalidate",
+          }),
+        ),
       });
     }
   },

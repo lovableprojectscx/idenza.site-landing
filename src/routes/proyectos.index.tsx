@@ -10,11 +10,12 @@ import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
 import projSorpresas from "@/assets/proj-sorpresas.webp";
 import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
 import projGerenciaMockup from "@/assets/proj-gerenciaglobal-mockup.webp";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/proyectos/")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/proyectos" }
+      { rel: "canonical", href: "https://www.idenza.site/proyectos" }
     ],
     meta: [
       { title: "Proyectos y Casos de Diseño Web | IDENZA Perú" },
@@ -22,17 +23,18 @@ export const Route = createFileRoute("/proyectos/")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/proyectos" },
+      { property: "og:url", content: "https://www.idenza.site/proyectos" },
       { property: "og:title", content: "Proyectos y Casos de Diseño Web | IDENZA Perú" },
       { property: "og:description", content: "Casos reales de páginas web y catálogos que venden: florerías, food box y más. Mira los sistemas que IDENZA construyó para negocios en Perú." },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Proyectos y Casos de Diseño Web | IDENZA Perú" },
       { name: "twitter:description", content: "Casos reales de páginas web y catálogos que venden: florerías, food box y más. Mira los sistemas que IDENZA construyó para negocios en Perú." },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
     ],
+    scripts: [jsonLdScript(breadcrumbSchema([{ name: "Proyectos", path: "/proyectos" }]))],
   }),
   component: ProjectsPage,
 });

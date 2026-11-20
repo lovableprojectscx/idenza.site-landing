@@ -13,10 +13,11 @@ import {
   validateConsent,
   buildBioWhatsAppUrl,
 } from "@/config/bio";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 export const Route = createFileRoute("/bio")({
   head: () => ({
-    links: [{ rel: "canonical", href: "https://idenza.site/bio" }],
+    links: [{ rel: "canonical", href: "https://www.idenza.site/bio" }],
     meta: [
       { title: "IDENZA · Sistemas web que venden" },
       {
@@ -31,10 +32,10 @@ export const Route = createFileRoute("/bio")({
           "Sistemas web que venden por tu negocio. Consultoría de crecimiento digital y diseño web en Ayacucho y Perú. Escríbenos directo por WhatsApp.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://idenza.site/bio" },
+      { property: "og:url", content: "https://www.idenza.site/bio" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:image", content: "https://idenza.site/og-bio.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-bio.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: "IDENZA — Sistemas web que venden" },
@@ -45,7 +46,7 @@ export const Route = createFileRoute("/bio")({
         content:
           "Sistemas web que venden por tu negocio. Consultoría de crecimiento digital y diseño web en Ayacucho y Perú. Escríbenos directo por WhatsApp.",
       },
-      { name: "twitter:image", content: "https://idenza.site/og-bio.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/og-bio.jpg" },
       { name: "theme-color", content: "#0E1420" },
     ],
   }),
@@ -170,6 +171,7 @@ function BioPage() {
 
     // Build and open WhatsApp target URL
     const targetUrl = buildBioWhatsAppUrl(businessName, whatsapp);
+    trackWhatsAppClick("bio_formulario");
     window.location.href = targetUrl;
   };
 
@@ -295,6 +297,7 @@ function BioPage() {
           {/* Botón 3 — fondo transparente, borde 1px bone white al 20%, contenido bone white */}
           <a
             href={BIO_CONFIG.buttons.whatsapp}
+            data-ubicacion="bio_boton"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => handleButtonClick("Escríbeme por WhatsApp", BIO_CONFIG.buttons.whatsapp)}

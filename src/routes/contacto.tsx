@@ -5,11 +5,13 @@ import { Footer } from "@/components/Footer";
 import { Reveal } from "./index"; // reuse Reveal animation wrapper
 
 import { sendContactEmail } from "@/lib/mail";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo";
+import { trackGenerateLead, trackWhatsAppClick } from "@/lib/analytics";
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/contacto" }
+      { rel: "canonical", href: "https://www.idenza.site/contacto" }
     ],
     meta: [
       { title: "Contacto · Diseño Web en Perú | IDENZA" },
@@ -17,17 +19,18 @@ export const Route = createFileRoute("/contacto")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/contacto" },
+      { property: "og:url", content: "https://www.idenza.site/contacto" },
       { property: "og:title", content: "Contacto · Diseño Web en Perú | IDENZA" },
       { property: "og:description", content: "Hablemos por WhatsApp o correo. Diseño web, catálogos y sistemas de pedidos para negocios en Perú. Te respondemos directo, sin bots." },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Contacto · Diseño Web en Perú | IDENZA" },
       { name: "twitter:description", content: "Hablemos por WhatsApp o correo. Diseño web, catálogos y sistemas de pedidos para negocios en Perú. Te respondemos directo, sin bots." },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
     ],
+    scripts: [jsonLdScript(breadcrumbSchema([{ name: "Contacto", path: "/contacto" }]))],
   }),
   component: ContactPage,
 });
@@ -49,6 +52,9 @@ function ContactPage() {
 
     setSubmitted(true);
 
+    // GA4: lead generado (sin datos personales)
+    trackGenerateLead("contacto");
+
     // Call server function to send Zoho Mail notification
     try {
       await sendContactEmail({ data: formData });
@@ -66,6 +72,7 @@ function ContactPage() {
     const waUrl = `https://wa.me/51921585977?text=${encodedText}`;
 
     // Redirect to WhatsApp
+    trackWhatsAppClick("formulario_contacto");
     window.location.href = waUrl;
   };
 
@@ -94,6 +101,7 @@ function ContactPage() {
                   <div>
                     <a
                       href={WHATSAPP}
+                      data-ubicacion="contacto"
                       className="btn-amber inline-flex items-center gap-2"
                     >
                       Escribir al +51 921 585 977

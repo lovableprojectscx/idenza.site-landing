@@ -139,19 +139,22 @@ export function trackBioEvent(eventName: string, params: Record<string, unknown>
   };
 
   if (typeof window !== "undefined") {
-    // 1. Google Tag Manager / dataLayer
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: eventName,
-        ...params,
-        ...utms,
-      });
-    }
+    // Nunca enviar datos personales (teléfono) a herramientas de analítica.
+    const { whatsapp_digits: _omit, ...safeParams } = params;
+    void _omit;
 
-    // 2. Google Analytics 4 gtag
+    // 1. Google Analytics 4 gtag (cargado en todo el sitio desde __root.tsx).
+    //    gtag ya envía page_view una sola vez por carga; aquí solo eventos propios.
     if (typeof window.gtag === "function") {
       window.gtag("event", eventName, {
-        ...params,
+        ...safeParams,
+        ...utms,
+      });
+    } else if (window.dataLayer) {
+      // 2. Fallback Google Tag Manager / dataLayer (solo si no hay gtag, para no duplicar)
+      window.dataLayer.push({
+        event: eventName,
+        ...safeParams,
         ...utms,
       });
     }
@@ -159,7 +162,7 @@ export function trackBioEvent(eventName: string, params: Record<string, unknown>
     // 3. Meta Pixel (Facebook)
     if (typeof window.fbq === "function") {
       window.fbq("trackCustom", eventName, {
-        ...params,
+        ...safeParams,
         ...utms,
       });
     }

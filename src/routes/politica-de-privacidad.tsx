@@ -4,11 +4,12 @@ import { Logo } from "@/components/Logo";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "./index";
 import { ShieldCheck, Lock, FileText, Mail, Phone, CheckCircle2 } from "lucide-react";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/politica-de-privacidad")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/politica-de-privacidad" }
+      { rel: "canonical", href: "https://www.idenza.site/politica-de-privacidad" }
     ],
     meta: [
       { title: "Política de Privacidad | IDENZA Perú" },
@@ -16,12 +17,13 @@ export const Route = createFileRoute("/politica-de-privacidad")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/politica-de-privacidad" },
+      { property: "og:url", content: "https://www.idenza.site/politica-de-privacidad" },
       { property: "og:title", content: "Política de Privacidad | IDENZA Perú" },
       { property: "og:description", content: "Política de Privacidad y Protección de Datos Personales de IDENZA en cumplimiento con la Ley N° 29733 del Perú." },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [jsonLdScript(breadcrumbSchema([{ name: "Política de Privacidad", path: "/politica-de-privacidad" }]))],
   }),
   component: PrivacyPolicyPage,
 });
@@ -55,7 +57,7 @@ function PrivacyPolicyPage() {
                   1. Titular del Tratamiento y Compromiso
                 </h2>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  En <strong className="text-foreground">IDENZA</strong>, nos tomamos muy en serio la privacidad de tu información. La presente Política de Privacidad describe cómo recopilamos, utilizamos, almacenamos y protegemos los datos personales que nos proporcionas a través de nuestro sitio web oficial <a href="https://idenza.site" className="text-amber underline">https://idenza.site</a> y nuestros canales directos de WhatsApp y correo electrónico.
+                  En <strong className="text-foreground">IDENZA</strong>, nos tomamos muy en serio la privacidad de tu información. La presente Política de Privacidad describe cómo recopilamos, utilizamos, almacenamos y protegemos los datos personales que nos proporcionas a través de nuestro sitio web oficial <a href="https://www.idenza.site" className="text-amber underline">https://idenza.site</a> y nuestros canales directos de WhatsApp y correo electrónico.
                 </p>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   Tratamos tus datos en estricto cumplimiento con la <strong className="text-foreground">Ley N° 29733 (Ley de Protección de Datos Personales del Perú)</strong> y su Reglamento aprobado por el Decreto Supremo N° 003-2013-JUS.
@@ -162,6 +164,7 @@ function PrivacyPolicyPage() {
                   </a>
                   <a
                     href="https://wa.me/51921585977?text=Hola%20Jack%2C%20quisiera%20consultar%20sobre%20mis%20datos%20personales"
+                    data-ubicacion="politica_privacidad"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border/60 hover:border-amber/50 transition-colors text-sm font-medium text-foreground"

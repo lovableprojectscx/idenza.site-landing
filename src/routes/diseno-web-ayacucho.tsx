@@ -24,11 +24,12 @@ import projBocafestMockup from "@/assets/proj-bocafest-mockup.webp";
 import projMiraflores from "@/assets/proj-miraflores.webp";
 import projSorpresas from "@/assets/proj-sorpresas.webp";
 import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
+import { ORG_ID, breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/diseno-web-ayacucho")({
   head: () => ({
     links: [
-      { rel: "canonical", href: "https://idenza.site/diseno-web-ayacucho" },
+      { rel: "canonical", href: "https://www.idenza.site/diseno-web-ayacucho" },
       { rel: "preload", as: "image", href: heroClientAyacucho, fetchpriority: "high" }
     ],
     meta: [
@@ -38,22 +39,17 @@ export const Route = createFileRoute("/diseno-web-ayacucho")({
         content:
           "Diseño de páginas web y catálogos online en Ayacucho. Posiciona tu negocio en Google y recibe pedidos directos a tu WhatsApp. Diagnóstico gratis.",
       },
-      {
-        name: "keywords",
-        content:
-          "diseño de páginas web en ayacucho, diseño web ayacucho, desarrollo web ayacucho, desarrollo de páginas web en ayacucho, páginas web ayacucho, páginas web huamanga, catálogo whatsapp ayacucho, tienda online ayacucho, servicios web ayacucho, desarrollador web ayacucho",
-      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "IDENZA" },
       { property: "og:locale", content: "es_PE" },
-      { property: "og:url", content: "https://idenza.site/diseno-web-ayacucho" },
+      { property: "og:url", content: "https://www.idenza.site/diseno-web-ayacucho" },
       { property: "og:title", content: "Diseño de Páginas Web en Ayacucho | IDENZA" },
       {
         property: "og:description",
         content:
           "Diseño de páginas web y catálogos online en Ayacucho. Posiciona tu negocio en Google y recibe pedidos directos a tu WhatsApp. Diagnóstico gratis.",
       },
-      { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+      { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -63,120 +59,111 @@ export const Route = createFileRoute("/diseno-web-ayacucho")({
         content:
           "Diseño de páginas web y catálogos online en Ayacucho. Posiciona tu negocio en Google y recibe pedidos directos a tu WhatsApp. Diagnóstico gratis.",
       },
-      { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
+      { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
       { name: "geo.region", content: "PE-AYC" },
       { name: "geo.placename", content: "Ayacucho" },
       { name: "geo.position", content: "-13.15878;-74.22393" },
       { name: "ICBM", content: "-13.15878, -74.22393" },
+    ],
+    scripts: [
       {
-        script: [
-          {
-            type: "application/ld+json",
-            children: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "ProfessionalService",
+              "@id": "https://www.idenza.site/diseno-web-ayacucho#professionalservice",
+              "name": "IDENZA · Diseño y Desarrollo Web en Ayacucho",
+              "image": "https://www.idenza.site/og-home.jpg",
+              "url": "https://www.idenza.site/diseno-web-ayacucho",
+              "telephone": "+51921585977",
+              "email": "jack@idenza.site",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ayacucho",
+                "addressRegion": "Ayacucho",
+                "addressCountry": "PE"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -13.15878,
+                "longitude": -74.22393
+              },
+              "areaServed": [
                 {
-                  "@type": "LocalBusiness",
-                  "@id": "https://idenza.site/#localbusiness-ayacucho",
-                  "name": "IDENZA · Diseño y Desarrollo Web en Ayacucho",
-                  "image": "https://idenza.site/og-home.jpg",
-                  "url": "https://idenza.site/diseno-web-ayacucho",
-                  "telephone": "+51921585977",
-                  "email": "jack@idenza.site",
-                  "priceRange": "S/850 - S/2900",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Centro Histórico / Huamanga",
-                    "addressLocality": "Ayacucho",
-                    "addressRegion": "Ayacucho",
-                    "postalCode": "05001",
-                    "addressCountry": "PE"
-                  },
-                  "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -13.15878,
-                    "longitude": -74.22393
-                  },
-                  "openingHoursSpecification": {
-                    "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                    "opens": "08:00",
-                    "closes": "20:00"
-                  },
-                  "areaServed": [
-                    {
-                      "@type": "AdministrativeArea",
-                      "name": "Ayacucho"
-                    },
-                    {
-                      "@type": "AdministrativeArea",
-                      "name": "Huamanga"
-                    },
-                    {
-                      "@type": "Country",
-                      "name": "Perú"
-                    }
-                  ],
-                  "founder": {
-                    "@type": "Person",
-                    "name": "Jack Lujan"
-                  },
-                  "sameAs": [
-                    "https://www.facebook.com/idenza.site",
-                    "https://www.tiktok.com/@idenza.site"
-                  ]
+                  "@type": "AdministrativeArea",
+                  "name": "Ayacucho"
                 },
                 {
-                  "@type": "FAQPage",
-                  "@id": "https://idenza.site/diseno-web-ayacucho#faq",
-                  "mainEntity": [
-                    {
-                      "@type": "Question",
-                      "name": "¿Cuánto cuesta el diseño o desarrollo de una página web en Ayacucho?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Nuestros planes para negocios en Ayacucho van desde los S/ 850 (Presencia Web + WhatsApp) hasta S/ 2,900 (Tienda Virtual Completa con pasarela de pagos). Siempre tras un diagnóstico gratuito de demanda real."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "¿Cuál es la diferencia entre desarrollo web propio y plantillas comunes?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Desarrollamos tu página con código propio y optimización de velocidad de carga (PageSpeed 95+). No usamos plantillas lentas de WordPress que fallan en celulares o demoran en cargar en redes 4G en Ayacucho."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "¿En cuánto tiempo estará lista mi página web en Ayacucho?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Una web o catálogo interactivo suele estar completamente configurado y publicado en un plazo promedio de 5 a 10 días hábiles."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "¿Cómo entran los pedidos directo a mi WhatsApp?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "El cliente selecciona productos, cantidades o variantes en tu catálogo web y al dar clic en 'Confirmar pedido', el sistema abre su WhatsApp con el mensaje estructurado listo para cobrar."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "¿Mi negocio en Ayacucho aparecerá en los primeros lugares de Google?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Sí. Estructuramos la arquitectura SEO local (etiquetas H1, meta tags, schema LocalBusiness y mapa de sitio) para que Google identifique tu negocio cuando busquen tus servicios en Ayacucho."
-                      }
-                    }
-                  ]
+                  "@type": "AdministrativeArea",
+                  "name": "Huamanga"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Perú"
+                }
+              ],
+              "parentOrganization": { "@id": ORG_ID },
+              "founder": {
+                "@type": "Person",
+                "name": "Jack Lujan"
+              },
+              "sameAs": [
+                "https://www.facebook.com/idenza.site",
+                "https://www.tiktok.com/@idenza.site"
+              ]
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://www.idenza.site/diseno-web-ayacucho#faq",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "¿Cuánto cuesta el diseño o desarrollo de una página web en Ayacucho?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Nuestros planes para negocios en Ayacucho van desde los S/ 850 (Presencia Web + WhatsApp) hasta S/ 2,900 (Tienda Virtual Completa con pasarela de pagos). Siempre tras un diagnóstico gratuito de demanda real."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Cuál es la diferencia entre desarrollo web propio y plantillas comunes?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Desarrollamos tu página con código propio y optimización de velocidad de carga (PageSpeed 95+). No usamos plantillas lentas de WordPress que fallan en celulares o demoran en cargar en redes 4G en Ayacucho."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿En cuánto tiempo estará lista mi página web en Ayacucho?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Una web o catálogo interactivo suele estar completamente configurado y publicado en un plazo promedio de 5 a 10 días hábiles."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Cómo entran los pedidos directo a mi WhatsApp?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "El cliente selecciona productos, cantidades o variantes en tu catálogo web y al dar clic en 'Confirmar pedido', el sistema abre su WhatsApp con el mensaje estructurado listo para cobrar."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "¿Mi negocio en Ayacucho aparecerá en los primeros lugares de Google?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí. Estructuramos la arquitectura SEO local (etiquetas H1, meta tags, schema LocalBusiness y mapa de sitio) para que Google identifique tu negocio cuando busquen tus servicios en Ayacucho."
+                  }
                 }
               ]
-            }),
-          },
-        ],
+            }
+          ]
+        }),
       },
+      jsonLdScript(breadcrumbSchema([{ name: "Diseño Web en Ayacucho", path: "/diseno-web-ayacucho" }])),
     ],
   }),
   component: AyacuchoLandingPage,
@@ -383,6 +370,7 @@ function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-4 pt-2">
               <a
                 href={WHATSAPP}
+                data-ubicacion="hero"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-amber px-8 py-4 rounded-xl text-base font-medium shadow-xl hover:shadow-amber/20 transition-all duration-300 text-center"
@@ -453,6 +441,7 @@ function LocalSection() {
             </div>
             <a
               href={WHATSAPP}
+              data-ubicacion="ventajas_locales"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-amber shrink-0 text-xs font-medium py-3 px-5 rounded-xl"
@@ -902,6 +891,7 @@ function ServicesSection() {
                     <span className="text-[11px] text-white/50 font-mono">100% Propio</span>
                     <a
                       href={WHATSAPP}
+                      data-ubicacion="planes"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs font-display font-semibold text-amber hover:underline flex items-center gap-1"
@@ -1001,6 +991,7 @@ function CtaSection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={WHATSAPP}
+              data-ubicacion="cta_final"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-amber text-sm font-medium px-7 py-3.5 rounded-xl w-full sm:w-auto"
@@ -1009,6 +1000,7 @@ function CtaSection() {
             </a>
             <a
               href="https://wa.me/51921585977"
+              data-ubicacion="cta_final_numero"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-sm font-medium px-7 py-3.5 rounded-xl w-full sm:w-auto inline-flex items-center justify-center gap-2"

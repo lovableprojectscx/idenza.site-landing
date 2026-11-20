@@ -3,6 +3,7 @@ import { useRouterState, Link } from "@tanstack/react-router";
 import { X, Loader2, AlertCircle, TrendingUp } from "lucide-react";
 import popupHeaderImg from "@/assets/popup-header.webp";
 import { sendPopupLeadEmail } from "@/lib/mail";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 export function LeadCapturePopup() {
   const routerState = useRouterState();
@@ -214,6 +215,7 @@ export function LeadCapturePopup() {
       const waMessage = "Hola IDENZA, quiero saber cuántas personas buscan mi servicio.";
       const waUrl = `https://wa.me/51921585977?text=${encodeURIComponent(waMessage)}`;
 
+      trackWhatsAppClick("popup");
       window.location.href = waUrl;
     } catch (err) {
       console.error("Popup lead submission error:", err);

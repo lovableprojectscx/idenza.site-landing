@@ -16,6 +16,7 @@ import projVadilloMockup from "@/assets/proj-vadillo-mockup.webp";
 import projGerenciaMockup from "@/assets/proj-gerenciaglobal-mockup.webp";
 
 import { ExternalLink } from "lucide-react";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/proyectos/$id")({
   head: ({ params }) => {
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/proyectos/$id")({
     const desc = caseItem.seoDesc || `Caso de estudio IDENZA: ${caseItem.name} (${caseItem.cat}).`;
     return {
       links: [
-        { rel: "canonical", href: `https://idenza.site/proyectos/${params.id}` }
+        { rel: "canonical", href: `https://www.idenza.site/proyectos/${params.id}` }
       ],
       meta: [
         { title },
@@ -32,16 +33,24 @@ export const Route = createFileRoute("/proyectos/$id")({
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "IDENZA" },
         { property: "og:locale", content: "es_PE" },
-        { property: "og:url", content: `https://idenza.site/proyectos/${params.id}` },
+        { property: "og:url", content: `https://www.idenza.site/proyectos/${params.id}` },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
-        { property: "og:image", content: "https://idenza.site/og-home.jpg" },
+        { property: "og:image", content: "https://www.idenza.site/og-home.jpg" },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: desc },
-        { name: "twitter:image", content: "https://idenza.site/og-home.jpg" },
+        { name: "twitter:image", content: "https://www.idenza.site/og-home.jpg" },
+      ],
+      scripts: [
+        jsonLdScript(
+          breadcrumbSchema([
+            { name: "Proyectos", path: "/proyectos" },
+            { name: caseItem.name, path: `/proyectos/${params.id}` },
+          ]),
+        ),
       ],
     };
   },
@@ -238,7 +247,7 @@ function CaseStudyPage() {
                     Podemos construir un sistema a medida sobre la demanda real de tu negocio.
                   </p>
                   <div className="pt-2 flex flex-col gap-4">
-                    <a href={WHATSAPP} className="btn-amber w-full text-center">
+                    <a href={WHATSAPP} data-ubicacion="caso_estudio" className="btn-amber w-full text-center">
                       Quiero algo así
                     </a>
                     <Link to="/proyectos" className="btn-outline w-full text-center py-2.5 text-xs rounded-xl">

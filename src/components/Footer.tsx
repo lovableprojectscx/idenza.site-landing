@@ -17,6 +17,7 @@ export function Footer() {
           <div className="eyebrow mb-1 text-[color:var(--bone)]/50">Contacto</div>
           <a
             href={WHATSAPP}
+            data-ubicacion="footer"
             className="text-[color:var(--bone)]/75 hover:text-white transition-colors"
           >
             WhatsApp · +51 921 585 977
